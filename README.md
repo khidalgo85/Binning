@@ -846,6 +846,8 @@ de R.
 **Score**
 *S**c**o**r**e* = *C**o**m**p**l**e**t**e**n**e**s**s* − (5 \* *C**o**n**t**a**m**i**n**a**t**i**o**n*)
 
+<img src="https://render.githubusercontent.com/render/math?math=Score = Completeness - (5 *  Contamination)">
+
 <img src="imgs/comp_score_low.png" width="30%" height="30%" /><img src="imgs/comp_score_medium.png" width="30%" height="30%" /><img src="imgs/comp_score_high.png" width="30%" height="30%" />
 
 ### 10. Anotação Taxonômica

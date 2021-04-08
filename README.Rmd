@@ -713,6 +713,8 @@ Para comparar os resultados dos **score** dos bins, de antes vs depois do refina
 **Score**
 $$Score = Completeness - (5 *  Contamination)$$
 
+<img src="https://render.githubusercontent.com/render/math?math=Score = Completeness - (5 *  Contamination)">
+
 
 
 ```{r low, echo=FALSE, out.width="30%", out.height="30%"}
