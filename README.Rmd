@@ -1,5 +1,5 @@
 ---
-output: 
+output:
     github_document:
     pandoc_args: --webtex
 always_allow_html: true
@@ -606,7 +606,7 @@ Após terminar a corrida do *DAS Tool*, descarregue os arquivos:
 * `_DASTool_summary.txt`
 * `_DASTool_scores.pdf`
 
-Para descarregar arquivos desde o servidor para seu computador o comando usado é `scp`. Aqui um exemplo:
+Para descarregar arquivos desde o servidor para seu computador o comando usado é `scp`. Aqui um exemplo::
 ```
 scp usuario@ip.do.seu.servidor:/caminho/do/arquivo caminho/no/seu/computador/
 ```
@@ -734,13 +734,9 @@ Enquanto isso, desde o servidor descarregue seus bins (`12.DasTool/_DASTool_bins
 
 Após carregados todos os genomas na plataforma, procure no menú de apps *GTDB-Tk classify*, selecione o set de bins carregados e dê click em Run, aguarde até o resultado estiver pronto e descarregue a tabela `.csv` do reporte. A tabela é um pouco bagunçada, mas use o Excel para ajeitar, de maneira que fique só as colunas mais importantes, tais como *Genoma, Clasificação taxonômica* (aqui é bom separar em colunas, por cada nível taxonômico). Use este [script](https://github.com/khidalgo85/Binning/blob/master/taxonomy.R) para juntar esta tabela, com a criada no [script da saída do Magpurify](https://github.com/khidalgo85/Binning/blob/master/binning.R) usado para comparação do antes e depois de usá-lo, e gerar uma grande tabela com as informações mais relavantes do processo de binning.
 
-```{r,echo=FALSE}
+```{r,echo=FALSE, message=FALSE, comment=FALSE}
+library(dplyr)
 library(kableExtra)
-#> 
-#> Attaching package: 'kableExtra'
-#> The following object is masked from 'package:dplyr':
-#> 
-#>     group_rows
 
 tabela <- read.csv2("tabela_final_binning.csv", sep = ",")
 
@@ -752,13 +748,14 @@ color.me1 <- which(df$Inicial.MiMAG.Quality == "Medium-Quality")
 color.me2 <- which(df$Inicial.MiMAG.Quality == "Low-Quality")
 
 df %>% 
-  kable(booktabs = T) %>%
+  kable(escape = F, full_width = FALSE) %>%
   kable_styling() %>%
   row_spec(color.me, bold = T, color = "white", background = "green") %>% 
   kable_styling() %>%
   row_spec(color.me1, bold = T, color = "white", background = "orange") %>% 
   kable_styling() %>%
-  row_spec(color.me2, bold = T, color = "white", background = "red")
+  row_spec(color.me2, bold = T, color = "white", background = "red") %>% 
+      row_spec(0, background = "rgb(172, 178, 152)", color = "black", font_size = 18)
 ```
 
 

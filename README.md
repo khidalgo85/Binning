@@ -695,7 +695,7 @@ Após terminar a corrida do *DAS Tool*, descarregue os arquivos: \*
 `_DASTool_hqBins.pdf` \* `_DASTool_summary.txt` \* `_DASTool_scores.pdf`
 
 Para descarregar arquivos desde o servidor para seu computador o comando
-usado é `scp`. Aqui um exemplo:
+usado é `scp`. Aqui um exemplo::
 
     scp usuario@ip.do.seu.servidor:/caminho/do/arquivo caminho/no/seu/computador/
 
@@ -893,55 +893,55 @@ tabela com as informações mais relavantes do processo de binning.
 <table class="table table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 Genome
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 Domain
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 Phylum
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 Class
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 Order
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 Family
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 Genera
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 Species
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 Completeness\_before
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 Completeness\_after
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 Contamination.before
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 Contamination\_after
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 score.before
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 score.after
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 Bin.Tool
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 Inicial.MiMAG.Quality
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 Final.MiMAG.Quality
 </th>
 </tr>
