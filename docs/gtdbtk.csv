@@ -1,0 +1,36 @@
+User Genome;;Domain;Phylum;Class;Order;Family;Genera;Species
+107_sub;;Bacteria;Dependentiae;Babeliae;Babeliales;Vermiphilaceae;;
+114_sub;;Bacteria;Patescibacteria;Microgenomatia;GWA2-44-7;UBA8517;UBA8517;
+116;;Bacteria;Dependentiae;Babeliae;Babeliales;Babeliaceae;;
+11_sub;;Bacteria;Bacteroidota;Kapabacteria;Kapabacteriales;XYC2-FULL-35-21;;
+124;;Bacteria;Desulfuromonadota;Desulfuromonadia;Geobacterales;Geobacteraceae;;
+135;;Bacteria;Patescibacteria;Paceibacteria;UBA9983_A;UBA5272;UBA11704;
+136;;Bacteria;Proteobacteria;Gammaproteobacteria;Pseudomonadales;Moraxellaceae;Moraxella_A;Moraxella_A aerosaccus
+14;;Bacteria;Bacteroidota;Bacteroidia;Flavobacteriales;Flavobacteriaceae;Flavobacterium;
+34;;Bacteria;Firmicutes_B;Desulfotomaculia;Desulfotomaculales;Pelotomaculaceae;;
+42;;Bacteria;Proteobacteria;Gammaproteobacteria;Pseudomonadales;Moraxellaceae;Acinetobacter;Acinetobacter radioresistens
+51;;Bacteria;Firmicutes_B;Thermincolia;Thermincolales;UBA2595;GW-Firmicutes-8;
+56_sub;;Bacteria;Patescibacteria;Microgenomatia;GWA2-44-7;UBA8517;UBA8517;
+6087;;Bacteria;Bacteroidota;Ignavibacteria;Ignavibacteriales;Melioribacteraceae;;
+6098;;Bacteria;Desulfuromonadota;Desulfuromonadia;Geobacterales;Geobacteraceae;Geobacter;Geobacter metallireducens
+73;;Bacteria;Caldisericota;Caldisericia;UBA4822;UBA4822;UBA4822;
+92;;Bacteria;Patescibacteria;Paceibacteria;UBA6257;UBA9933;WO2-47-17b;
+93;;Bacteria;Bacteroidota;Bacteroidia;Bacteroidales;CG2-30-32-10;;
+binsanity_-kmean-bin_18;;Bacteria;Bacteroidota;Ignavibacteria;Ignavibacteriales;Melioribacteraceae;XYB12-FULL-38-5;
+binsanity_-kmean-bin_74_sub;;Bacteria;Dependentiae;Babeliae;;;;
+maxbin.003;;Bacteria;Bacteroidota;Bacteroidia;Bacteroidales;BBW3;UBA8529;
+maxbin.008;;Bacteria;UBP7;;;;;
+maxbin.017;;Bacteria;Patescibacteria;Paceibacteria;UBA6257;UBA9933;;
+maxbin.018_sub;;Bacteria;Bacteroidota;Ignavibacteria;SJA-28;;;
+maxbin.045_sub;;Bacteria;Proteobacteria;Gammaproteobacteria;Pseudomonadales;Moraxellaceae;Acinetobacter;Acinetobacter johnsonii
+maxbin.046;;Bacteria;Patescibacteria;Paceibacteria;UBA9983_A;UBA9973;UBA9973;
+maxbin.062_sub;;Bacteria;Desulfuromonadota;Desulfuromonadia;Geobacterales;Geobacteraceae;DSM-9736;
+maxbin.064_sub;;Bacteria;Desulfuromonadota;Desulfuromonadia;Geobacterales;Geobacteraceae;Geobacter;
+Metabat2_firsttrial_.12;;Bacteria;Bacteroidota;Kapabacteria;Kapabacteriales;XYC2-FULL-35-21;;
+Metabat2_firsttrial_.32;;Bacteria;Patescibacteria;Paceibacteria;Paceibacterales;2-12-FULL-40-12;;
+Metabat2_firsttrial_.38;;Bacteria;Patescibacteria;Microgenomatia;Levybacterales;UBA12049;;
+Metabat2_firsttrial_.62;;Bacteria;Patescibacteria;Microgenomatia;GWA2-44-7;UBA8517;UBA8517;
+Metabat2_firsttrial_.7;;Bacteria;Patescibacteria;CPR2;UBA1875;;;
+Metabat2_firsttrial_.96;;Bacteria;Bacteroidota;Ignavibacteria;SJA-28;B-1AR;;
+Metabat2_secondtrial_.83;;Bacteria;Firmicutes_B;Desulfotomaculia;Desulfotomaculales;Pelotomaculaceae;;
+maxbin.061_sub;;Archaea;Crenarchaeota;Nitrososphaeria;Nitrososphaerales;Nitrosopumilaceae;Nitrosotenuis;Nitrosotenuis cloacae

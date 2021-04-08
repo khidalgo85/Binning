@@ -1,0 +1,240 @@
+---
+title: "Work Progress"
+subtitle: "Group Meeting"
+author: Kelly Hidalgo
+institute: Grupo de Ecologia Microbiana e Multi-ômicas
+date: "13/03/2021"
+aspectratio: 169 # 16:9
+#classoption: handout
+output:
+  xaringan::moon_reader:
+    includes:
+      after_body: insert-logo.html
+    css: [default, rladies, rladies-fonts]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      navigation:
+        scroll: false
+---
+
+```{r xaringan-logo1, echo=FALSE}
+library(xaringan)
+library(xaringanExtra)
+library(emo)
+library(knitr)
+```
+
+```{css, echo = FALSE}
+.huge .remark-code { /*Change made here*/
+  font-size: 150% !important;
+}
+.tiny .remark-code { /*Change made here*/
+  font-size: 20% !important;
+}
+
+```
+
+```{r setup commen, include=FALSE}
+knitr::opts_chunk$set(comment="")
+```
+
+```{css, echo = FALSE}
+.huge .remark-code { /*Change made here*/
+  font-size: 150% !important;
+}
+.tiny .remark-code { /*Change made here*/
+  font-size: 60% !important;
+}
+```
+
+```{r update1, eval = FALSE, echo=FALSE}
+xaringan::inf_mr()
+```
+
+```{r update, eval = FALSE, echo=FALSE}
+xaringan::inf_mr()
+```
+
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\"></i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\"></i>",
+    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
+```{r xaringan-extra-styles, echo=FALSE}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+```
+
+---
+class: middle center bg-main1 hide_logo
+
+# Remember that...
+
+We have an hexagon logo for using in our presentations
+
+<img src="imgs/1.png" width="35%">
+
+<font size="2"> I will send you the file in an email </font>
+
+---
+class: middle, inverse
+
+# Part I: PhD. Results
+
+---
+## DNA EXTRACTION 
+
+.center[<img src="imgs/dna.gif" width="70%">]
+
+--
+
+.center[Finally <font size="7"> **WE HAVE DNA** </font>]
+
+---
+
+## Protocol
+
+```{r dna extraction, echo=FALSE, out.width="120%", out.height="120%", fig.align='center'}
+knitr::include_graphics("imgs/dna_extraction.png")
+```
+---
+
+# And Then...
+
+```{r ggplot analises, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("imgs/process.png")
+```
+
+---
+
+# Now...
+
+**Waiting for the results**
+
+
+.center[<img src="imgs/lucas.gif" width="70%">]
+
+---
+class: middle, inverse
+
+# Part II: Squeezing the master's results
+
+---
+
+## 2nd Paper - Binning
+
+This paper was rejected the last year, so I´m remaking the analysis and I will change the aim. Also I invited **Victor** to help me!
+The pipeline used <font size="5">[**here**](https://github.com/khidalgo85/Binning) </font>
+
+.center[<img src="imgs/binwork.png" width="70%">]
+
+---
+
+## Which is the minimum information for reporting MAGs?
+
+```{r paper, echo=FALSE, out.width="90%", out.height="90%", fig.align='center'}
+knitr::include_graphics("imgs/paper.png")
+```
+
+---
+
+```{r paper2, echo=FALSE, out.width="90%", out.height="90%", fig.align='center'}
+knitr::include_graphics("imgs/mimag1.png")
+```
+
+---
+
+```{r paper3, echo=FALSE, out.width="90%", out.height="90%", fig.align='center'}
+knitr::include_graphics("imgs/mimag2.png")
+```
+
+---
+class: middle, inverse
+
+
+# Some ready analysis and results
+
+---
+
+## How Many High-Quality Bins I recovered? 
+
+After the dereplication stage (*DAS_Tool*)(contamination <5%)
+
+.center[<font size="20"> 23!! </font>]
+
+```{r dastool quality, echo=FALSE, out.width="90%", out.height="90%", fig.align='center'}
+knitr::include_graphics("imgs/DASTool_quality.png")
+```
+
+---
+
+Other graph...
+
+```{r dastool scores, echo=FALSE, out.width="100%", out.height="100%", fig.align='center'}
+knitr::include_graphics("imgs/DASTool_scores.png")
+```
+
+---
+
+## And the completness and contamination?
+
+```{r checkm, echo=FALSE, out.width="90%", out.height="90%", fig.align='center'}
+knitr::include_graphics("imgs/checkm.png")
+```
+
+---
+
+## Could I improve my bins?
+
+Yes, with RefineM, MAGpurify or MAGpurify2 tools.
+
+I tried with RefineM and MAGpurify but I got an error! 😞
+
+I'm going to try again and to read about the errors.
+
+---
+
+## How abudant is each MAG in the samples?
+
+```{r barchart, echo=FALSE, out.width="90%", out.height="90%", fig.align='center'}
+knitr::include_graphics("imgs/barchart.png")
+```
+
+---
+
+## Next Steps
+
+* Refine
+* Taxonomic Annotation (16S, other markers, automatic-GTDB)
+* Functional Annotation (EggNog, KEGG, DRAM)
+* Phylogeny (Nat)
+* Networks
+* Flux Balance?
+
+A lot of work!! 
+
+.center[<img src="imgs/work.gif" width="30%">]
+
+---
+class: middle, inverse
+
+## GRACIAS!
+
+```{r povo, echo=FALSE, out.width="90%", out.height="90%", fig.align='center'}
+knitr::include_graphics("imgs/povo.jpeg")
+```
+
+
