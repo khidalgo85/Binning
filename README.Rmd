@@ -708,10 +708,9 @@ checkm qa --threads 10 --tab_table --file 19.CheckMFiltered_complete/checkm_filt
 ```
 Descarregue as tabelas do *CheckM* de antes e depois do refinamento com *MagPurify2* e compare os resultados.
 
-Para comparar os resultados dos **score** dos bins, de antes vs depois do refinamento foram construídos *scriptcharts* com o pacote **ggplot2** de R. 
+Para comparar os resultados dos **score** dos bins, de antes vs depois do refinamento foram construídos *scriptcharts* com o pacote **ggplot2** de R. Script [aqui](https://github.com/khidalgo85/Binning/blob/master/binning.R)
 
 **Score**
-$$Score = Completeness - (5 *  Contamination)$$
 
 <img src="https://render.githubusercontent.com/render/math?math=Score = Completeness - (5 *  Contamination)">
 
@@ -733,7 +732,7 @@ O primeiro passo é criar uma conta [aqui](https://narrative.kbase.us/#signup). 
 
 Enquanto isso, desde o servidor descarregue seus bins (`12.DasTool/_DASTool_bins/`). No **KBase**, crie uma nova *narrativa*. Depois suba seus bins, e importe eles. Para importa todo o set de bins mais facilmente, procure nas apps *Batch Import Assembly from Staging Area*. Desse jeito todos seus genomas serão subidos na narrativa criada e estarão disponíveis para as análises seguintes. É importante que na descrição do tipo de arquivo que está subindo, coloque que se trata de MAGs.
 
-Após carregados todos os genomas na plataforma, procure no menú de apps *GTDB-Tk classify*, selecione o set de bins carregados e dê click em Run, aguarde até o resultado estiver pronto e descarregue a tabela `.csv` do reporte. A tabela é um pouco bagunçada, mas use o Excel para ajeitar, de maneira que fique só as colunas mais importantes, tais como *Genoma, Clasificação taxonômica* (aqui é bom separar em colunas, por cada nível taxonômico). Use este [script]() para juntar esta tabela, com a criada no [script da saída do Magpurify]() usado para comparação do antes e depois de usá-lo, e gerar uma grande tabela com as informações mais relavantes do processo de binning.
+Após carregados todos os genomas na plataforma, procure no menú de apps *GTDB-Tk classify*, selecione o set de bins carregados e dê click em Run, aguarde até o resultado estiver pronto e descarregue a tabela `.csv` do reporte. A tabela é um pouco bagunçada, mas use o Excel para ajeitar, de maneira que fique só as colunas mais importantes, tais como *Genoma, Clasificação taxonômica* (aqui é bom separar em colunas, por cada nível taxonômico). Use este [script](https://github.com/khidalgo85/Binning/blob/master/taxonomy.R) para juntar esta tabela, com a criada no [script da saída do Magpurify](https://github.com/khidalgo85/Binning/blob/master/binning.R) usado para comparação do antes e depois de usá-lo, e gerar uma grande tabela com as informações mais relavantes do processo de binning.
 
 ```{r,echo=FALSE}
 library(kableExtra)

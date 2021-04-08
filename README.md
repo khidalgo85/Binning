@@ -841,10 +841,10 @@ Descarregue as tabelas do *CheckM* de antes e depois do refinamento com
 
 Para comparar os resultados dos **score** dos bins, de antes vs depois
 do refinamento foram construídos *scriptcharts* com o pacote **ggplot2**
-de R.
+de R. Script
+[aqui](https://github.com/khidalgo85/Binning/blob/master/binning.R)
 
 **Score**
-*S**c**o**r**e* = *C**o**m**p**l**e**t**e**n**e**s**s* − (5 \* *C**o**n**t**a**m**i**n**a**t**i**o**n*)
 
 <img src="https://render.githubusercontent.com/render/math?math=Score = Completeness - (5 *  Contamination)">
 
@@ -883,10 +883,12 @@ Run, aguarde até o resultado estiver pronto e descarregue a tabela
 `.csv` do reporte. A tabela é um pouco bagunçada, mas use o Excel para
 ajeitar, de maneira que fique só as colunas mais importantes, tais como
 *Genoma, Clasificação taxonômica* (aqui é bom separar em colunas, por
-cada nível taxonômico). Use este [script]() para juntar esta tabela, com
-a criada no [script da saída do Magpurify]() usado para comparação do
-antes e depois de usá-lo, e gerar uma grande tabela com as informações
-mais relavantes do processo de binning.
+cada nível taxonômico). Use este
+[script](https://github.com/khidalgo85/Binning/blob/master/taxonomy.R)
+para juntar esta tabela, com a criada no [script da saída do
+Magpurify](https://github.com/khidalgo85/Binning/blob/master/binning.R)
+usado para comparação do antes e depois de usá-lo, e gerar uma grande
+tabela com as informações mais relavantes do processo de binning.
 
 <table class="table table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
