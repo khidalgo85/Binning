@@ -67,7 +67,23 @@ montagem.
 
 -   [MagPurify2](https://apcamargo.github.io/magpurify2/docs/)(v2.1)
 
-------------------------------------------------------------------------
+### Anotação Taxonômica
+
+-   [GTDB-tk](https://ecogenomics.github.io/GTDBTk/index.html)(v1.4.1)
+
+### Cobertura
+
+-   [CoverM](https://github.com/wwood/CoverM#usage)(v0.6.1)
+
+### Anotação Funcional
+
+-   [Prodigal](https://github.com/hyattpd/Prodigal)(v2.6.3)**Predição de
+    ORFs**
+
+-   [Diamond](https://github.com/bbuchfink/diamond)(v2.0.9)**Alinhador
+    contra bases de dados**
+
+-   ## [DRAM](https://github.com/shafferm/DRAM)(v1.2.0)
 
 ## Processamento
 
@@ -771,6 +787,14 @@ Para rodar a análise de qualidade pelo *CheckM* use o seguinte comando:
 
     checkm lineage_wf 12.DasTool/_DASTool_bins/ 13.CheckM/ -t 10 -x fa --tmpdir tmp --tab > 13.CheckM/output.txt
 
+A continuação um gráfico mostrando a disperssão dos MAGs segundo a
+qualidade (baseado no
+[MiMAG](https://www.nature.com/articles/nbt.3893)), sendo possível
+observar quantos e com que ferramenta de binning (*cor*) foram criados.
+Para a construção desse gráfico, use este [script]()
+
+<img src="imgs/unnamed-chunk-4-1.png" width="100%" />
+
 ------------------------------------------------------------------------
 
 ### 9. Refinamento com MagPurify2
@@ -893,6 +917,9 @@ tabela com as informações mais relavantes do processo de binning.
 <table class="table table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
+<th style="text-align:right;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
+X
+</th>
 <th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 Genome
 </th>
@@ -948,6 +975,9 @@ Final.MiMAG.Quality
 </thead>
 <tbody>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+1
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 107\_sub
 </td>
@@ -999,6 +1029,9 @@ Low-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+2
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 11\_sub
 </td>
@@ -1050,6 +1083,9 @@ High-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+3
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 114\_sub
 </td>
@@ -1102,6 +1138,9 @@ Low-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+4
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 116
 </td>
@@ -1153,6 +1192,9 @@ Medium-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+5
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 124
 </td>
@@ -1204,6 +1246,9 @@ Medium-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+6
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 135
 </td>
@@ -1256,6 +1301,9 @@ Medium-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+7
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 136
 </td>
@@ -1309,6 +1357,9 @@ High-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+8
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 14
 </td>
@@ -1361,6 +1412,9 @@ High-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+9
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 34
 </td>
@@ -1412,6 +1466,9 @@ Medium-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+10
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 42
 </td>
@@ -1465,6 +1522,9 @@ High-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+11
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 51
 </td>
@@ -1517,6 +1577,9 @@ Low-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+12
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 56\_sub
 </td>
@@ -1569,6 +1632,9 @@ Low-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+13
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 6087
 </td>
@@ -1620,6 +1686,9 @@ Low-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+14
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 6098
 </td>
@@ -1673,6 +1742,9 @@ Low-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+15
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 73
 </td>
@@ -1725,6 +1797,9 @@ Medium-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+16
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 92
 </td>
@@ -1777,6 +1852,9 @@ Medium-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+17
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 93
 </td>
@@ -1828,6 +1906,9 @@ High-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+18
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 binsanity\_-kmean-bin\_18
 </td>
@@ -1880,6 +1961,9 @@ High-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+19
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 maxbin.003
 </td>
@@ -1932,6 +2016,9 @@ High-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+20
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 maxbin.008
 </td>
@@ -1980,6 +2067,9 @@ Low-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+21
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 maxbin.017
 </td>
@@ -2031,6 +2121,9 @@ Medium-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+22
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 maxbin.018\_sub
 </td>
@@ -2081,6 +2174,9 @@ Low-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+23
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 maxbin.045\_sub
 </td>
@@ -2118,7 +2214,7 @@ Acinetobacter johnsonii
 0
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-0.769999999999982
+0.77
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 0
@@ -2134,6 +2230,9 @@ Low-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+24
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 maxbin.046
 </td>
@@ -2186,6 +2285,9 @@ Medium-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+25
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 maxbin.061\_sub
 </td>
@@ -2239,6 +2341,9 @@ Low-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+26
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 maxbin.062\_sub
 </td>
@@ -2291,6 +2396,9 @@ Low-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+27
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 maxbin.064\_sub
 </td>
@@ -2327,7 +2435,7 @@ Geobacter
 0.86
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
--0.449999999999996
+-0.45
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 24.09
@@ -2343,6 +2451,9 @@ Low-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+28
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 Metabat2\_firsttrial\_.12
 </td>
@@ -2394,6 +2505,9 @@ High-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+29
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 Metabat2\_firsttrial\_.32
 </td>
@@ -2445,6 +2559,9 @@ Low-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+30
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 Metabat2\_firsttrial\_.38
 </td>
@@ -2496,6 +2613,9 @@ Medium-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+31
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 Metabat2\_firsttrial\_.62
 </td>
@@ -2548,6 +2668,9 @@ Medium-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+32
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 Metabat2\_firsttrial\_.7
 </td>
@@ -2598,6 +2721,9 @@ Medium-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+33
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 Metabat2\_firsttrial\_.96
 </td>
@@ -2649,6 +2775,9 @@ Low-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+34
+</td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 Metabat2\_secondtrial\_.83
 </td>
@@ -2709,13 +2838,100 @@ de cada MAG em cada uma das amostras. Para isto é necessário usar os
 arquivos `.sorted.bam` para mapear os genomas dentros das reads das
 amostras.
 
+    mkdir 20.Coverage
+
+    coverm genome --bam-files 06.Mapping/B52.sorted.bam 06.Mapping/B63.sorted.bam 06.Mapping/B65.sorted.bam 06.Mapping/PM62.sorted.bam 06.Mapping/PM63.sorted.bam 06.Mapping/PM65.sorted.bam -d 12.DasTool/_DASTool_bins/ -x fa --min-read-percent-identity 0.95 --methods relative_abundance --output-file 20.Coverage/output_coverm.tsv
+
+Fazer download do arquivo de saída `20.Coverage/output_coverm.tsv`.
+
 A continuação, nos gráficos de barras pode ser observada a abundância
 relativa dos MAGs em cada amostra, junto com a afiliação taxonômica no
 nível de Filum (A) e de Familia (B). Para construir esses gráficos foi
 usado este [script]()
 
-<img src="imgs/unnamed-chunk-5-1.png" width="100%" />
+<img src="imgs/unnamed-chunk-6-1.png" width="100%" />
 
 ### 12. Anotação funcional
 
-Em construção…
+Após a anotação taxonômica é necessário anotar funcionalmente os MAGs.
+Para isto, primeiro devem ser preditas as ORFs (*Open Reading Frames*)
+usando a ferramenta *Prodigal* e depois alinhar esse resultado contra as
+bases de dados **KEGG** e **EggNog** com o programa *Diamond*.
+
+A continuação se encontram os comandos a usar em forma de loop para
+fazer cada processo em cada um dos MAGs.
+
+**Predição de ORFs - Prodigal**
+
+    for i in  12.DasTool/_DASTool_bins/*.fa 
+    do
+    BASE=$(basename $i .fa)
+    nohup prodigal -i $i -o 21.ORFsPredicted/${BASE}_orf -a 21.ORFsPredicted/${BASE}_proteins.faa -d 21.ORFsPredicted/${BASE}_ORFnucleotides.faa -s 21.ORFsPredicted/${BASE}_genes
+    done 
+
+**Anotação Funcional - Diamond**
+
+    for i in 21.ORFsPredicted/*_ORFnucleotides.faa
+    do
+    BASE=$(basename $i _ORFnucleotides.faa)
+      for j in /home/bioinfo/Documentos/Databases/SqueezeMeta/db/*dmnd
+      do
+      db=$(basename $j .dmnd)
+    diamond blastx --threads 20 --more-sensitive -k 1 -f 6 qseqid qlen sseqid sallseqid slen qstart qend sstart send evalue bitscore score length pident qcovhsp --id 80 --query-cover 80 --db $j --query $i -o 22.FunctionalAnnotation/${BASE}_${db}.txt --tmpdir /dev/shm
+     done
+
+Agora com uma série de comandos, vão ser juntadas as anotações de *Kegg*
+e *EGGnog* de cada MAG, e por último será criada uma tabela com todas as
+anotações de todos os MAGs.
+
+    cd 22.FunctionalAnnotation/
+
+    for i in *_keggdb.txt
+    do
+    base=$(basename $i _keggdb.txt)
+    cat $i ${base}_eggnog.txt > ${base}
+    done
+
+    rm *eggnog*
+
+    rm *keggdb*
+
+    for i in *
+    do
+    nawk '{print FILENAME"\t"$0}' $i > $i_final.txt; mv $i_final.txt $i
+    done
+
+    cat * > all.txt
+
+
+    echo -e "Genome   qseqid    qlen    sseqid     sallseqid    slen    qstart    qend    sstart    send    evalue    bitscore    score    length    pident    qcovhsp" > myheaders
+
+    cat myheaders all.txt > MAGs_functional_annotation.txt
+
+    cd ..
+
+Faça download do arquivo `MAGs_functional_annotation.txt` e explore o
+potencial metabólico de seus genomas, procure pelos genes específicos de
+seu interesse.
+
+### 13. Inferindo a Função Biogeoquímica dos MAGs
+
+A ferramenta DRAM (*Distilled and Refined Annotation of Metabolism*)
+realiza dois grandes processos: **1) Annotation**, no qual é feita a
+predição das ORFs com *Prodigal* e uma anotação functional usando
+*BLAST* e *HMM* diferentes bases de dados (i.e. Kegg, UniRef90, MEROPS,
+KOFam, Pfam, CAZy, VOGdb); **2) Distillation**, onde é usado o output da
+primeira fase com todos os genes anotados de cada base de dados para
+compilar as anotações por categorias de metabolismos (i.e. *Energy,
+Transporters, Carbon Utilization, etc*), criando por último um *heatmap*
+das funções metabólicas chave por genoma, apresentando a porcentagem de
+completude das vias metabólicas (que porcentagem de ghenes estão
+presentes em cada genoma de uma determinada via metabólica), entre
+outras informações.
+
+Neste tutorial vai ser usada a versão desenvolvida para **KBase**.
+
+Usando o *Batch Import Assembly from Staging Area* com o set de MAGs,
+criado na anotação taxonômica, procure nas **Apps Beta** *Annotate and
+Distill Assemblies with DRAM*. Coloque o set de MAGs, e dê click em RUN
+(Paciência vai demorar).
