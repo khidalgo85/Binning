@@ -759,7 +759,10 @@ Tabela DASTools
 
 </div>
 
-## Adicionalmente, o **DAS Tool** separa os bins que passaram o *threshold* na pasta `12.DasTool/_DASTool_bins/`.
+Adicionalmente, o **DAS Tool** separa os bins que passaram o *threshold*
+na pasta `12.DasTool/_DASTool_bins/`.
+
+------------------------------------------------------------------------
 
 ### 8. Qualidade dos MAGs
 
@@ -2840,14 +2843,15 @@ amostras.
 
     mkdir 20.Coverage
 
-    coverm genome --bam-files 06.Mapping/B52.sorted.bam 06.Mapping/B63.sorted.bam 06.Mapping/B65.sorted.bam 06.Mapping/PM62.sorted.bam 06.Mapping/PM63.sorted.bam 06.Mapping/PM65.sorted.bam -d 12.DasTool/_DASTool_bins/ -x fa --min-read-percent-identity 0.95 --methods relative_abundance --output-file 20.Coverage/output_coverm.tsv
+    coverm genome --bam-files 06.Mapping/B52.sorted.bam 06.Mapping/B63.sorted.bam 06.Mapping/B65.sorted.bam 06.Mapping/PM62.sorted.bam 06.Mapping/PM63.sorted.bam 06.Mapping/PM65.sorted.bam -d 12.DasTool/hq_mq_bins/ -x fa --min-read-percent-identity 0.95 --methods relative_abundance --output-file 20.Coverage/output_coverm.tsv
 
 Fazer download do arquivo de saída `20.Coverage/output_coverm.tsv`.
 
 A continuação, nos gráficos de barras pode ser observada a abundância
 relativa dos MAGs em cada amostra, junto com a afiliação taxonômica no
 nível de Filum (A) e de Familia (B). Para construir esses gráficos foi
-usado este [script]()
+usado este
+[script](https://github.com/khidalgo85/Binning/blob/master/docs/graphs2.R)
 
 <img src="imgs/unnamed-chunk-6-1.png" width="100%" />
 
@@ -2861,9 +2865,13 @@ bases de dados **KEGG** e **EggNog** com o programa *Diamond*.
 A continuação se encontram os comandos a usar em forma de loop para
 fazer cada processo em cada um dos MAGs.
 
+Primeiro foi criada uma pasta `12.DasTool/hq_mq_bins/` onde foram
+copiados os bins com alta e média qualidade segundo os resultados do
+*CheckM*.
+
 **Predição de ORFs - Prodigal**
 
-    for i in  12.DasTool/_DASTool_bins/*.fa 
+    for i in  12.DasTool/hq_mq_bins/*.fa 
     do
     BASE=$(basename $i .fa)
     nohup prodigal -i $i -o 21.ORFsPredicted/${BASE}_orf -a 21.ORFsPredicted/${BASE}_proteins.faa -d 21.ORFsPredicted/${BASE}_ORFnucleotides.faa -s 21.ORFsPredicted/${BASE}_genes
@@ -2877,7 +2885,8 @@ fazer cada processo em cada um dos MAGs.
       for j in /home/bioinfo/Documentos/Databases/SqueezeMeta/db/*dmnd
       do
       db=$(basename $j .dmnd)
-    diamond blastx --threads 20 --more-sensitive -k 1 -f 6 qseqid qlen sseqid sallseqid slen qstart qend sstart send evalue bitscore score length pident qcovhsp --id 80 --query-cover 80 --db $j --query $i -o 22.FunctionalAnnotation/${BASE}_${db}.txt --tmpdir /dev/shm
+    diamond blastx --threads 10 --more-sensitive -k 1 -f 6 qseqid qlen sseqid sallseqid slen qstart qend sstart send evalue bitscore score length pident qcovhsp --id 60 --query-cover 60 --db $j --query $i -o 22.FunctionalAnnotation/${BASE}_${db}.txt --tmpdir /dev/shm
+     done
      done
 
 Agora com uma série de comandos, vão ser juntadas as anotações de *Kegg*
@@ -2935,3 +2944,11 @@ Usando o *Batch Import Assembly from Staging Area* com o set de MAGs,
 criado na anotação taxonômica, procure nas **Apps Beta** *Annotate and
 Distill Assemblies with DRAM*. Coloque o set de MAGs, e dê click em RUN
 (Paciência vai demorar).
+
+Após terminar faça download do arquivo `product.html` o qual é um
+heatmap interativo, explore ele!
+
+<img src="imgs/visualization.png" width="100%" height="100%" style="display: block; margin: auto;" />
+
+[Aqui](https://github.com/khidalgo85/Binning/blob/master/imgs/visualization.png)
+pode abrir o heatmap de cima para fazer zoom.

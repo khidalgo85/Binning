@@ -1,23 +1,24 @@
 
 
 ## Gráfico da abundancia relativa dos MAGs nas amostras
-
-t <- read.delim("docs/coverm.tsv", sep = "\t") %>%
+library(dplyr)
+t <- read.delim("docs/output_coverm.tsv", sep = "\t") %>%
   filter(Genome != "binsanity_-kmean-bin_74_sub")
 
-y <- read.csv2("tabela_final_binning.csv", sep = ",") %>%
+y <- read.csv2("tabela_final_binning.csv", sep = ";") %>%
   rbind(c("unmapped"))
 
-x <- merge(y, t, by = "Genome")
+x <- merge(y, t, by = "Genome") %>%
+  select(-X)
 
-x1 <- rename(x, Sample.1 = B52, Sample.2 = B63, Sample.3 = B65, Sample.4 = PM62, Sample.5 = PM63, Sample.6 = PM65)
+x1 <- rename(x, Sample.1 = B52.sorted.Relative.Abundance...., Sample.2 = B63.sorted.Relative.Abundance...., Sample.3 = B65.sorted.Relative.Abundance...., Sample.4 = PM62.sorted.Relative.Abundance...., Sample.5 = PM63.sorted.Relative.Abundance...., Sample.6 = PM65.sorted.Relative.Abundance....)
 
 library(tidyr)
 
 x2 <- x1 %>%
   gather(Sample, RelativeAbundance, Sample.1:Sample.6)
 x2 <- as_tibble(x2)
-x2
+
 
 mypalette <- c("#50a4d3",
                "#45c3c6",
@@ -41,6 +42,8 @@ mypalette <- c("#50a4d3",
                "#51b74c",
                "#ce4eb4",
                "#a360d8")
+
+library(ggplot2)
 ### Phylum
 p <- ggplot(x2, aes(y=Sample, x=RelativeAbundance, fill=Phylum)) + 
   geom_bar(stat='identity') + scale_fill_manual(values=c(mypalette)) +
