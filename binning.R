@@ -28,8 +28,7 @@ head(bef1)
 ### Eliminando colunas desnecessárias
 
 bef2 <- bef1 %>% 
-  filter(Bin.Id != "binsanity_-kmean-bin_74_sub.filtered") %>% 
-  select(-Bin.Id, -X..genomes, -Marker.lineage, -X..markers, -X..marker.sets,
+   select(-Bin.Id, -X..genomes, -Marker.lineage, -X..markers, -X..marker.sets,
          -X0, -X1, -X2, -X3, -X4, -X5., -Strain.heterogeneity) %>% 
   rename(Completeness_after = Completeness, Contamination.after =
            Contamination)

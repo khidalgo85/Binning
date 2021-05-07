@@ -83,7 +83,9 @@ montagem.
 -   [Diamond](https://github.com/bbuchfink/diamond)(v2.0.9)**Alinhador
     contra bases de dados**
 
--   ## [DRAM](https://github.com/shafferm/DRAM)(v1.2.0)
+-   [DRAM](https://github.com/shafferm/DRAM)(v1.2.0)
+
+------------------------------------------------------------------------
 
 ## Processamento
 
@@ -927,6 +929,9 @@ X
 Genome
 </th>
 <th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
+MAG
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 Domain
 </th>
 <th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
@@ -946,6 +951,12 @@ Genera
 </th>
 <th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 Species
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
+Taxonomy
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
+ID
 </th>
 <th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 18px;">
 Completeness\_before
@@ -978,65 +989,14 @@ Final.MiMAG.Quality
 </thead>
 <tbody>
 <tr>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
-1
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-107\_sub
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-Bacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-Dependentiae
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-Babeliae
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-Babeliales
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-Vermiphilaceae
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-49.18
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-27.88
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-11.71
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-0
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
--9.37
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-27.88
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-CONCOCT
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-Low-Quality
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-Low-Quality
-</td>
-</tr>
-<tr>
 <td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
 2
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 11\_sub
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+MAG02
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 Bacteria
@@ -1056,6 +1016,12 @@ XYC2-FULL-35-21
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Kapabacteriales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+MAG02\_Kapabacteriales
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 96.89
@@ -1086,120 +1052,14 @@ High-Quality
 </td>
 </tr>
 <tr>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
-3
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-114\_sub
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Bacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Patescibacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Microgenomatia
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-GWA2-44-7
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-UBA8517
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-UBA8517
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-56.84
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-38.03
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-5.45
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-1.49
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-29.59
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-30.58
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-CONCOCT
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Medium-Quality
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Low-Quality
-</td>
-</tr>
-<tr>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
-4
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-116
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Bacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Dependentiae
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Babeliae
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Babeliales
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Babeliaceae
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-80.27
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-79.21
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-0
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-0
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-80.27
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-79.21
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-CONCOCT
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Medium-Quality
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Medium-Quality
-</td>
-</tr>
-<tr>
 <td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
 5
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 124
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+MAG05
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 Bacteria
@@ -1219,6 +1079,12 @@ Geobacteraceae
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Geobacteraceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+MAG05\_Geobacteraceae
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 100
@@ -1249,66 +1115,14 @@ Medium-Quality
 </td>
 </tr>
 <tr>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
-6
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-135
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Bacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Patescibacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Paceibacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-UBA9983\_A
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-UBA5272
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-UBA11704
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-56.87
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-51.78
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-6.37
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-1.12
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-25.02
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-46.18
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-CONCOCT
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Medium-Quality
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Medium-Quality
-</td>
-</tr>
-<tr>
 <td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
 7
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 136
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+MAG07
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 Bacteria
@@ -1330,6 +1144,12 @@ Moraxella\_A
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 Moraxella\_A aerosaccus
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Moraxella\_A aerosaccus
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+MAG07\_Moraxella\_A aerosaccus
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 99.14
@@ -1367,6 +1187,9 @@ High-Quality
 14
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+MAG08
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 Bacteria
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
@@ -1385,6 +1208,12 @@ Flavobacteriaceae
 Flavobacterium
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Flavobacterium
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+MAG08\_Flavobacterium
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 98.37
@@ -1415,65 +1244,14 @@ High-Quality
 </td>
 </tr>
 <tr>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
-9
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-34
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Bacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Firmicutes\_B
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Desulfotomaculia
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Desulfotomaculales
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Pelotomaculaceae
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-96.2
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-54.39
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-9.65
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-0
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-47.95
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-54.39
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-CONCOCT
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Medium-Quality
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Medium-Quality
-</td>
-</tr>
-<tr>
 <td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
 10
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 42
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+MAG10
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 Bacteria
@@ -1495,6 +1273,12 @@ Acinetobacter
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 Acinetobacter radioresistens
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Acinetobacter radioresistens
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+MAG10\_Acinetobacter radioresistens
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 96.97
@@ -1525,341 +1309,14 @@ High-Quality
 </td>
 </tr>
 <tr>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
-11
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-51
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Bacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Firmicutes\_B
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Thermincolia
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Thermincolales
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-UBA2595
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-GW-Firmicutes-8
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-91.72
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-38.56
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-8.21
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-1.72
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-50.67
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-29.96
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-CONCOCT
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Medium-Quality
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Low-Quality
-</td>
-</tr>
-<tr>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
-12
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-56\_sub
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-Bacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-Patescibacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-Microgenomatia
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-GWA2-44-7
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-UBA8517
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-UBA8517
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-70.3
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-0
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-27.56
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-0
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
--67.5
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-0
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-CONCOCT
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-Low-Quality
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-Low-Quality
-</td>
-</tr>
-<tr>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
-13
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-6087
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Bacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Bacteroidota
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Ignavibacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Ignavibacteriales
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Melioribacteraceae
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-61.6
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-27.59
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-9.59
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-0
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-13.65
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-27.59
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Vamb
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Medium-Quality
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Low-Quality
-</td>
-</tr>
-<tr>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
-14
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-6098
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Bacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Desulfuromonadota
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Desulfuromonadia
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Geobacterales
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Geobacteraceae
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Geobacter
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Geobacter metallireducens
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-56.33
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-22.81
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-2.9
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-0
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-41.83
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-22.81
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Vamb
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Medium-Quality
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Low-Quality
-</td>
-</tr>
-<tr>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
-15
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-73
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Bacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Caldisericota
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Caldisericia
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-UBA4822
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-UBA4822
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-UBA4822
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-76.79
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-69.64
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-1.79
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-1.79
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-67.84
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-60.69
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-CONCOCT
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Medium-Quality
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Medium-Quality
-</td>
-</tr>
-<tr>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
-16
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-92
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Bacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Patescibacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Paceibacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-UBA6257
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-UBA9933
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-WO2-47-17b
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-61.85
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-61.85
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-0.99
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-0
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-56.9
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-61.85
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-CONCOCT
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Medium-Quality
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Medium-Quality
-</td>
-</tr>
-<tr>
 <td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
 17
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 93
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+MAG17
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 Bacteria
@@ -1879,6 +1336,12 @@ CG2-30-32-10
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Bacteroidales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+MAG17\_Bacteroidales
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 97.85
@@ -1916,6 +1379,9 @@ High-Quality
 binsanity\_-kmean-bin\_18
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+MAG18
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 Bacteria
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
@@ -1934,6 +1400,12 @@ Melioribacteraceae
 XYB12-FULL-38-5
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Melioribacteraceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+MAG18\_Melioribacteraceae
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 100
@@ -1971,6 +1443,9 @@ High-Quality
 maxbin.003
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+MAG19
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 Bacteria
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
@@ -1989,6 +1464,12 @@ BBW3
 UBA8529
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Bacteroidales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+MAG19\_Bacteroidales
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
 99.05
@@ -2019,11 +1500,204 @@ High-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+28
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Metabat2\_firsttrial\_.12
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+MAG28
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Bacteroidota
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Kapabacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Kapabacteriales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+XYC2-FULL-35-21
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Kapabacteriales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+MAG28\_Kapabacteriales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+96.89
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+96.89
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+0.55
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+0
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+94.14
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+96.89
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Meatabat2
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+High-Quality
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+High-Quality
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+1
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+107\_sub
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+MAG01
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Dependentiae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Babeliae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Babeliales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Vermiphilaceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Vermiphilaceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+MAG01\_Vermiphilaceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+49.18
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+27.88
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+11.71
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+0
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+-9.37
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+27.88
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+CONCOCT
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Low-Quality
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Low-Quality
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+12
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+56\_sub
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+MAG12
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Patescibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Microgenomatia
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+GWA2-44-7
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+UBA8517
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+UBA8517
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Microgenomatia
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+MAG12\_Microgenomatia
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+70.3
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+0
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+27.56
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+0
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+-67.5
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+0
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+CONCOCT
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Low-Quality
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Low-Quality
+</td>
+</tr>
+<tr>
 <td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
 20
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 maxbin.008
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+MAG20
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 Bacteria
@@ -2040,6 +1714,12 @@ UBP7
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+UBP7
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+MAG20\_UBP7
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 55.32
@@ -2070,118 +1750,14 @@ Low-Quality
 </td>
 </tr>
 <tr>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
-21
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-maxbin.017
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Bacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Patescibacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Paceibacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-UBA6257
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-UBA9933
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-80.15
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-79.03
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-2.25
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-0
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-68.9
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-79.03
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-MaxBin
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Medium-Quality
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Medium-Quality
-</td>
-</tr>
-<tr>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
-22
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-maxbin.018\_sub
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Bacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Bacteroidota
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Ignavibacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-SJA-28
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-58.04
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-47.88
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-3.87
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-3.87
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-38.69
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-28.53
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-MaxBin
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Medium-Quality
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Low-Quality
-</td>
-</tr>
-<tr>
 <td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
 23
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 maxbin.045\_sub
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+MAG23
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 Bacteria
@@ -2203,6 +1779,12 @@ Acinetobacter
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 Acinetobacter johnsonii
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Acinetobacter johnsonii
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+MAG23\_Acinetobacter johnsonii
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 87.07
@@ -2233,66 +1815,14 @@ Low-Quality
 </td>
 </tr>
 <tr>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
-24
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-maxbin.046
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Bacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Patescibacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Paceibacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-UBA9983\_A
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-UBA9973
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-UBA9973
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-76.54
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-76.54
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-0
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-0
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-76.54
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-76.54
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-MaxBin
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Medium-Quality
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
-Medium-Quality
-</td>
-</tr>
-<tr>
 <td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
 25
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 maxbin.061\_sub
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+MAG25
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 Archaea
@@ -2314,6 +1844,12 @@ Nitrosotenuis
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 Nitrosotenuis cloacae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Nitrosotenuis cloacae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+MAG25\_Nitrosotenuis cloacae
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 100
@@ -2351,6 +1887,9 @@ Low-Quality
 maxbin.062\_sub
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+MAG26
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 Bacteria
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
@@ -2369,6 +1908,12 @@ Geobacteraceae
 DSM-9736
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Geobacteraceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+MAG26\_Geobacteraceae
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 65.28
@@ -2406,6 +1951,9 @@ Low-Quality
 maxbin.064\_sub
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+MAG27
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 Bacteria
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
@@ -2424,6 +1972,12 @@ Geobacteraceae
 Geobacter
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Geobacter
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+MAG27\_Geobacter
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 39.35
@@ -2454,65 +2008,14 @@ Low-Quality
 </td>
 </tr>
 <tr>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
-28
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
-Metabat2\_firsttrial\_.12
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
-Bacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
-Bacteroidota
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
-Kapabacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
-Kapabacteriales
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
-XYC2-FULL-35-21
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
-96.89
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
-96.89
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
-0.55
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
-0
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
-94.14
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
-96.89
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
-Meatabat2
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
-High-Quality
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
-High-Quality
-</td>
-</tr>
-<tr>
 <td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
 29
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 Metabat2\_firsttrial\_.32
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+MAG29
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 Bacteria
@@ -2534,6 +2037,12 @@ Paceibacterales
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Paceibacterales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+MAG29\_Paceibacterales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
 34.46
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
@@ -2562,11 +2071,840 @@ Low-Quality
 </td>
 </tr>
 <tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+33
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Metabat2\_firsttrial\_.96
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+MAG33
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Bacteroidota
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Ignavibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+SJA-28
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+B-1AR
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Ignavibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+MAG33\_Ignavibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+33.33
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+33.33
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+0.55
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+0.55
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+30.58
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+30.58
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Meatabat2
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Low-Quality
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Low-Quality
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+3
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+114\_sub
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG03
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Patescibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Microgenomatia
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+GWA2-44-7
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA8517
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA8517
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Microgenomatia
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG03\_Microgenomatia
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+56.84
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+38.03
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+5.45
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+1.49
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+29.59
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+30.58
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+CONCOCT
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Medium-Quality
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Low-Quality
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+4
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+116
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG04
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Dependentiae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Babeliae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Babeliales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Babeliaceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Babeliaceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG04\_Babeliaceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+80.27
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+79.21
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+0
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+0
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+80.27
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+79.21
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+CONCOCT
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Medium-Quality
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Medium-Quality
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+6
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+135
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG06
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Patescibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Paceibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA9983\_A
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA5272
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA11704
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Paceibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG06\_Paceibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+56.87
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+51.78
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+6.37
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+1.12
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+25.02
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+46.18
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+CONCOCT
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Medium-Quality
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Medium-Quality
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+9
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+34
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG09
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Firmicutes\_B
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Desulfotomaculia
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Desulfotomaculales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Pelotomaculaceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Pelotomaculaceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG09\_Pelotomaculaceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+96.2
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+54.39
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+9.65
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+0
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+47.95
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+54.39
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+CONCOCT
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Medium-Quality
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Medium-Quality
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+11
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+51
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG11
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Firmicutes\_B
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Thermincolia
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Thermincolales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA2595
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+GW-Firmicutes-8
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Thermincolales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG11\_Thermincolales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+91.72
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+38.56
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+8.21
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+1.72
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+50.67
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+29.96
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+CONCOCT
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Medium-Quality
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Low-Quality
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+13
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+6087
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG13
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteroidota
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Ignavibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Ignavibacteriales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Melioribacteraceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Melioribacteraceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG13\_Melioribacteraceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+61.6
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+27.59
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+9.59
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+0
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+13.65
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+27.59
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Vamb
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Medium-Quality
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Low-Quality
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+14
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+6098
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG14
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Desulfuromonadota
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Desulfuromonadia
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Geobacterales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Geobacteraceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Geobacter
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Geobacter metallireducens
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Geobacter metallireducens
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG14\_Geobacter metallireducens
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+56.33
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+22.81
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+2.9
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+0
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+41.83
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+22.81
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Vamb
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Medium-Quality
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Low-Quality
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+15
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+73
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG15
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Caldisericota
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Caldisericia
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA4822
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA4822
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA4822
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Caldisericia
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG15\_Caldisericia
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+76.79
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+69.64
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+1.79
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+1.79
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+67.84
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+60.69
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+CONCOCT
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Medium-Quality
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Medium-Quality
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+16
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+92
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG16
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Patescibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Paceibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA6257
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA9933
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+WO2-47-17b
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Paceibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG16\_Paceibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+61.85
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+61.85
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+0.99
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+0
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+56.9
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+61.85
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+CONCOCT
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Medium-Quality
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Medium-Quality
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+21
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+maxbin.017
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG21
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Patescibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Paceibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA6257
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA9933
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Paceibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG21\_Paceibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+80.15
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+79.03
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+2.25
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+0
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+68.9
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+79.03
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MaxBin
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Medium-Quality
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Medium-Quality
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+22
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+maxbin.018\_sub
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG22
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteroidota
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Ignavibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+SJA-28
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Ignavibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG22\_Ignavibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+58.04
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+47.88
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+3.87
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+3.87
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+38.69
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+28.53
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MaxBin
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Medium-Quality
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Low-Quality
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+24
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+maxbin.046
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG24
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Patescibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Paceibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA9983\_A
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA9973
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA9973
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Paceibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG24\_Paceibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+76.54
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+76.54
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+0
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+0
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+76.54
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+76.54
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MaxBin
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Medium-Quality
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Medium-Quality
+</td>
+</tr>
+<tr>
 <td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
 30
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 Metabat2\_firsttrial\_.38
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG30
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 Bacteria
@@ -2586,6 +2924,12 @@ UBA12049
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Levybacterales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG30\_Levybacterales
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 70.3
@@ -2623,6 +2967,9 @@ Medium-Quality
 Metabat2\_firsttrial\_.62
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG31
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 Bacteria
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
@@ -2641,6 +2988,12 @@ UBA8517
 UBA8517
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Microgenomatia
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG31\_Microgenomatia
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 56.84
@@ -2678,6 +3031,9 @@ Medium-Quality
 Metabat2\_firsttrial\_.7
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG32
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 Bacteria
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
@@ -2696,6 +3052,12 @@ UBA1875
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Patescibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG32\_Patescibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 86.52
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
@@ -2721,60 +3083,6 @@ Medium-Quality
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 Medium-Quality
-</td>
-</tr>
-<tr>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
-33
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-Metabat2\_firsttrial\_.96
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-Bacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-Bacteroidota
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-Ignavibacteria
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-SJA-28
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-B-1AR
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-33.33
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-33.33
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-0.55
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-0.55
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-30.58
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-30.58
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-Meatabat2
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-Low-Quality
-</td>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
-Low-Quality
 </td>
 </tr>
 <tr>
@@ -2783,6 +3091,9 @@ Low-Quality
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 Metabat2\_secondtrial\_.83
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG34
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 Bacteria
@@ -2802,6 +3113,12 @@ Pelotomaculaceae
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Pelotomaculaceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG34\_Pelotomaculaceae
 </td>
 <td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
 86.62
@@ -2843,15 +3160,14 @@ amostras.
 
     mkdir 20.Coverage
 
-    coverm genome --bam-files 06.Mapping/B52.sorted.bam 06.Mapping/B63.sorted.bam 06.Mapping/B65.sorted.bam 06.Mapping/PM62.sorted.bam 06.Mapping/PM63.sorted.bam 06.Mapping/PM65.sorted.bam -d 12.DasTool/hq_mq_bins/ -x fa --min-read-percent-identity 0.95 --methods relative_abundance --output-file 20.Coverage/output_coverm.tsv
+    coverm genome --bam-files 06.Mapping/B52.sorted.bam 06.Mapping/B63.sorted.bam 06.Mapping/B65.sorted.bam 06.Mapping/PM62.sorted.bam 06.Mapping/PM63.sorted.bam 06.Mapping/PM65.sorted.bam -d 12.DasTool/hq_mq_bins/ -x fa --min-read-percent-identity 0.95 --methods relative_abundance --output-file 20.Coverage/output_coverm_hqmq.tsv
 
 Fazer download do arquivo de saída `20.Coverage/output_coverm.tsv`.
 
 A continuação, nos gráficos de barras pode ser observada a abundância
-relativa dos MAGs em cada amostra, junto com a afiliação taxonômica no
-nível de Filum (A) e de Familia (B). Para construir esses gráficos foi
-usado este
-[script](https://github.com/khidalgo85/Binning/blob/master/docs/graphs2.R)
+relativa dos MAGs em cada amostra, junto com a afiliação taxonômica.
+Para construir esses gráficos foi usado este
+[script](https://github.com/khidalgo85/Binning/blob/master/docs/graphs.R)
 
 <img src="imgs/unnamed-chunk-6-1.png" width="100%" />
 
@@ -2949,6 +3265,3 @@ Após terminar faça download do arquivo `product.html` o qual é um
 heatmap interativo, explore ele!
 
 <img src="imgs/visualization.png" width="100%" height="100%" style="display: block; margin: auto;" />
-
-[Aqui](https://github.com/khidalgo85/Binning/blob/master/imgs/visualization.png)
-pode abrir o heatmap de cima para fazer zoom.
