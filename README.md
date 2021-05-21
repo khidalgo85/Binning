@@ -24,23 +24,29 @@ montagem.
 ### Controle de qualidade
 
 -   [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+    (v0.11.9)
 
 -   [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
+    (v.0.39)
 
 ### Assembly
 
 -   [Megahit](https://github.com/voutcn/megahit) (v1.2.4-beta)
 
+### Controle de qualidade da montagem
+
+-   [MetaQUAST]()(v5.0.2)
+
 ### Mapping
 
--   [Bowtie2](https://github.com/BenLangmead/bowtie2) (v2.3.4.3)
+-   [Bowtie2](https://github.com/BenLangmead/bowtie2) (v2.3.5.1)
 
 -   [Samtools](https://github.com/samtools/samtools) (v1.9)
 
 ### Binning
 
 -   [Metabat2](https://bitbucket.org/berkeleylab/metabat/src/master/)
-    (v2.12.1)
+    (v2.14)
 
 -   [Metabat1](https://bitbucket.org/berkeleylab/metabat/src/master/)
 
@@ -49,7 +55,7 @@ montagem.
 -   [MaxBin](https://denbi-metagenomics-workshop.readthedocs.io/en/latest/binning/maxbin.html)
     (v2.2.6)
 
--   [BinSanity](https://github.com/edgraham/BinSanity) (v0.3.4-0)
+-   [BinSanity](https://github.com/edgraham/BinSanity) (v0.4.4-0)
 
 -   [Vamb](https://github.com/RasmussenLab/vamb)(v3.0.2)
 
@@ -58,7 +64,7 @@ montagem.
 -   [Ultrabinner](https://github.com/Huangpq2019/UltraBinner) para
     formatar os Bins como input para DasTools
 
--   [CheckM](https://github.com/Ecogenomics/CheckM/wiki) (v1.1.2-1)
+-   [CheckM](https://github.com/Ecogenomics/CheckM/wiki) (v1.1.3)
 
 -   [DasTools](https://github.com/cmks/DAS_Tool) (v1.1.2-0 - efesto)
     (Diamond v0.9.30.131)
@@ -150,8 +156,8 @@ pequenas.
 
 ### 2. Dataset
 
-Primeiro usando comandos básicos de **UNIX** (tutorial [aqui]()), crie
-um diretório chamado `binning` desde o qual vão ser rodados todos os
+Primeiro usando comandos básicos de **UNIX** (tutorial [aqui](), crie um
+diretório chamado `binning` desde o qual vão ser rodados todos os
 comandos
 
     mkdir binning 
@@ -160,10 +166,7 @@ comandos
 Agora dentro de binning crie outro diretório chamado `00.RawData`, onde
 vai descarregar o dataset de exemplo para este tutorial
 
-``` bash
-mkdir 00.RawData
-rm -r 00.RawData
-```
+    mkdir 00.RawData
 
 Para descarregar o dataset…
 
@@ -403,7 +406,7 @@ Ele gera um reporte completo com todos os dados da montagem. É muito
 útil quando você quer comparar varias montagens com diferentes
 parâmetros, das mesmas amostras, para assim escolher o melhor.
 
-Lmebre de ativar o ambiente do Conda onde o *MetaQuast* estiver
+Lembre de ativar o ambiente do Conda onde o *MetaQuast* estiver
 instalado
 
     nohup metaquast.py 04.Assembly/final.contigs.fa -o 05.AssemblyQuality
@@ -798,7 +801,7 @@ qualidade (baseado no
 observar quantos e com que ferramenta de binning (*cor*) foram criados.
 Para a construção desse gráfico, use este [script]()
 
-<img src="imgs/unnamed-chunk-4-1.png" width="100%" />
+<img src="imgs/unnamed-chunk-3-1.png" width="100%" />
 
 ------------------------------------------------------------------------
 
@@ -3169,7 +3172,52 @@ relativa dos MAGs em cada amostra, junto com a afiliação taxonômica.
 Para construir esses gráficos foi usado este
 [script](https://github.com/khidalgo85/Binning/blob/master/docs/graphs.R)
 
-<img src="imgs/unnamed-chunk-6-1.png" width="100%" />
+    #> List of 4
+    #>  $ legend.position: chr "bottom"
+    #>  $ axis.text.x    :List of 11
+    #>   ..$ family       : NULL
+    #>   ..$ face         : NULL
+    #>   ..$ colour       : NULL
+    #>   ..$ size         : num 14
+    #>   ..$ hjust        : NULL
+    #>   ..$ vjust        : NULL
+    #>   ..$ angle        : NULL
+    #>   ..$ lineheight   : NULL
+    #>   ..$ margin       : NULL
+    #>   ..$ debug        : NULL
+    #>   ..$ inherit.blank: logi FALSE
+    #>   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+    #>  $ axis.text.y    :List of 11
+    #>   ..$ family       : NULL
+    #>   ..$ face         : NULL
+    #>   ..$ colour       : NULL
+    #>   ..$ size         : num 14
+    #>   ..$ hjust        : NULL
+    #>   ..$ vjust        : NULL
+    #>   ..$ angle        : NULL
+    #>   ..$ lineheight   : NULL
+    #>   ..$ margin       : NULL
+    #>   ..$ debug        : NULL
+    #>   ..$ inherit.blank: logi FALSE
+    #>   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+    #>  $ legend.text    :List of 11
+    #>   ..$ family       : NULL
+    #>   ..$ face         : NULL
+    #>   ..$ colour       : NULL
+    #>   ..$ size         : num 12
+    #>   ..$ hjust        : NULL
+    #>   ..$ vjust        : NULL
+    #>   ..$ angle        : NULL
+    #>   ..$ lineheight   : NULL
+    #>   ..$ margin       : NULL
+    #>   ..$ debug        : NULL
+    #>   ..$ inherit.blank: logi FALSE
+    #>   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+    #>  - attr(*, "class")= chr [1:2] "theme" "gg"
+    #>  - attr(*, "complete")= logi FALSE
+    #>  - attr(*, "validate")= logi TRUE
+
+<img src="imgs/unnamed-chunk-5-1.png" width="100%" />
 
 ### 12. Anotação funcional
 

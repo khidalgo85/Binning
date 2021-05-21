@@ -36,23 +36,27 @@ Pipeline para reconstrução de genomas a partir de metagenomas, usando várias 
 
 ### Controle de qualidade
 
-- [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+- [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) (v0.11.9)
 
-- [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
+- [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) (v.0.39)
 
 ### Assembly
 
 - [Megahit](https://github.com/voutcn/megahit) (v1.2.4-beta)
 
+### Controle de qualidade da montagem
+
+- [MetaQUAST]()(v5.0.2)
+
 ### Mapping
 
-- [Bowtie2](https://github.com/BenLangmead/bowtie2) (v2.3.4.3)
+- [Bowtie2](https://github.com/BenLangmead/bowtie2) (v2.3.5.1)
 
 - [Samtools](https://github.com/samtools/samtools) (v1.9)
 
 ### Binning
 
-- [Metabat2](https://bitbucket.org/berkeleylab/metabat/src/master/) (v2.12.1) 
+- [Metabat2](https://bitbucket.org/berkeleylab/metabat/src/master/) (v2.14) 
 
 - [Metabat1](https://bitbucket.org/berkeleylab/metabat/src/master/)
 
@@ -60,7 +64,7 @@ Pipeline para reconstrução de genomas a partir de metagenomas, usando várias 
 
 - [MaxBin](https://denbi-metagenomics-workshop.readthedocs.io/en/latest/binning/maxbin.html) (v2.2.6) 
 
-- [BinSanity](https://github.com/edgraham/BinSanity) (v0.3.4-0)
+- [BinSanity](https://github.com/edgraham/BinSanity) (v0.4.4-0)
 
 - [Vamb](https://github.com/RasmussenLab/vamb)(v3.0.2)
 
@@ -68,7 +72,7 @@ Pipeline para reconstrução de genomas a partir de metagenomas, usando várias 
 
 - [Ultrabinner](https://github.com/Huangpq2019/UltraBinner) para formatar os Bins como input para DasTools
 
-- [CheckM](https://github.com/Ecogenomics/CheckM/wiki) (v1.1.2-1)
+- [CheckM](https://github.com/Ecogenomics/CheckM/wiki) (v1.1.3)
 
 - [DasTools](https://github.com/cmks/DAS_Tool) (v1.1.2-0 - efesto) (Diamond v0.9.30.131)
 
@@ -134,16 +138,15 @@ O sequenciamento massivo ou em larga escala de metagenomas, compreende a extraç
 
 ### 2. Dataset
 
-Primeiro usando comandos básicos de **UNIX** (tutorial [aqui]()), crie um diretório chamado `binning` desde o qual vão ser rodados todos os comandos
+Primeiro usando comandos básicos de **UNIX** (tutorial [aqui](), crie um diretório chamado `binning` desde o qual vão ser rodados todos os comandos
 ```
 mkdir binning 
 cd binning/
 ```
 Agora dentro de binning crie outro diretório chamado `00.RawData`, onde vai descarregar o dataset de exemplo para este tutorial
 
-```{bash}
+```
 mkdir 00.RawData
-rm -r 00.RawData
 ```
 
 Para descarregar o dataset...
@@ -314,7 +317,7 @@ O `nohup` no inicio do comando é um programinha que vai guardando em um arquivo
 
 A qualidade da montagem é avaliada por um programa chamado *MetaQuast*. Ele gera um reporte completo com todos os dados da montagem. É muito útil quando você quer comparar varias montagens com diferentes parâmetros, das mesmas amostras, para assim escolher o melhor.
 
-Lmebre de ativar o ambiente do Conda onde o *MetaQuast* estiver instalado
+Lembre de ativar o ambiente do Conda onde o *MetaQuast* estiver instalado
 
 ```
 nohup metaquast.py 04.Assembly/final.contigs.fa -o 05.AssemblyQuality
@@ -916,6 +919,11 @@ p <- ggplot(x3, aes(y=Sample, x=RelativeAbundance, fill=ID)) +
   scale_y_discrete(labels=c("B52", "B63", "B65", "PM62", "PM63", "PM65")) +
   theme(axis.text.x = element_text(size = 14)) +
   theme(axis.text.y = element_text(size = 14)) 
+  theme(legend.position = "bottom") +
+  theme(axis.text.x = element_text(size = 14)) +
+  theme(axis.text.y = element_text(size = 14)) +
+  theme(legend.text = element_text(size = 12))
+
 
 p
 
