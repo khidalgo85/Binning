@@ -99,6 +99,20 @@ Depois de instalado, *Anaconda* e o gestor *Conda*, podram ser criados
 *ambientes virtuais* par a instalação das diferentes ferramentas
 bioinformática que serão usadas.
 
+> 🇪🇸 Es recomendable instalar Anaconda, pues es la forma más fácil para
+> instalar las herramientas bioinformáticas necesarias para el
+> desarrollo de este pipeline. Anaconda es una distribución libre y
+> abierta de los lenguajes *Python* y *R*, utilizada en ciencia de datos
+> y bioinformática. Las diferentes versiones de los programas se
+> administran mediante un sistema de gestión llamado *conda*, el cual
+> hace bastante sencillo instalar, correr y actualizar programas.
+> [Aqui](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)
+> se encuentran las instrucciones para la instalación de Anaconda.
+>
+> Después de instalado *Anaconda* y su gestor *Conda*, podran ser
+> creados *ambientes virtuales* para la instalación de las diferentes
+> herramientas bioinformáticas que serán usadas.
+
 ------------------------------------------------------------------------
 
 # I. Binning
