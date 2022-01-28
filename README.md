@@ -135,31 +135,36 @@ vai descarregar o dataset de exemplo para este tutorial
 
 Para descarregar o dataset…
 
-    curl -L https://ndownloader.figshare.com/files/12389045 -o dataset.tar.gz
-    tar -xzvf dataset.tar.gz
-    rm dataset.tar.gz
-    cd metagen_tut
+    curl -L https://figshare.com/ndownloader/articles/19015058/versions/1 -o 00.RawData/dataset.zip
+    unzip 00.RawData/dataset.zip
+    rm 00.RawData/dataset.zip
 
-Com `ls`você pode ver o conteúdo descarregado. Têm três pastas `data`,
-`results` e `working`. Elimine as duas últimas pastas e o conteúdo da
-pasta `data` coloque na pasta `00.RawData`.
+Com `ls`você pode ver o conteúdo descarregado.
 
-    mv data/* ../00.RawData/
-    cd ..
-    rm -r metagen_tut
     ls 00.RawData
 
 Por último “listou” (`ls`) o conteúdo da pasta `00.RawData`, vai
 observar que têm 4 amostras paired-end (R1 e R2)
 
-    Sample_A_1.fastq.gz    Sample_A_2.fastq.gz   Sample_B_1.fastq.gz   Sample_B_2.fastq.gz   Sample_C_1.fastq.gz   Sample_C_2.fastq.gz   Sample_D_1.fastq.gz Sample_D_2.fastq.gz
+    Sample1_1.fq.gz Sample1_2.fq.gz Sample2_1.fq.gz Sample2_2.fq.gz Sample3_1.fq.gz Sample3_2.fq.gz Sample4_1.fq.gz Sample4_2.fq.gz Sample5_1.fq.gz Sample5_2.fq.gz Sample6_1.fq.gz Sample6_2.fq.gz
 
-> Nota importante: A maioria dos comandos que encontrará a continuação,
-> terão um parâmetro para definir o número de núcleos/threads/cpus
-> (`-t/--threads/`) que serão usados para o processamento de cada
-> comando. Coloque o número de núcleos baseado na sua máquina o servidor
-> que esteja usando para rodar as análises. Procure não usar todos os
-> núcleos disponíveis.
+É fortemente recomendado rodar os comandos desde o diretório base, que
+neste caso é: `binning/`
+
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+
+<div class="blue">
+
+> **Nota importante: A maioria dos comandos que encontrará a
+> continuação, terão um parâmetro para definir o número de
+> núcleos/threads/cpus (`-t/--threads/`) que serão usados para o
+> processamento de cada comando. Coloque o número de núcleos baseado na
+> sua máquina o servidor que esteja usando para rodar as análises.
+> Procure não usar todos os núcleos disponíveis.**
+
+</div>
 
 ## 1. Controle de qualidade
 
