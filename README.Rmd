@@ -590,11 +590,12 @@ library(pheatmap)
 pheatmap(data)
 ```
 
-Vai obter um heatmap com clusterização similar a este:
+Vai obter um heatmap com clusterização:
 
 <img src="imgs/minhash.png" align='center' width="80%">
 
-Faça *co-assembly* para *datasets* com distâncias menores de 0.1, entre ellas. Como pode ser observado, se formaram dois grandes cluster as amostras 1 a 3 e amostras 4 a 6. No entanto, os dois clusters são proóximos entre eles. Por tanto podem ser montados todos em um co-assembly só. 
+Como pode ser observado, se formaram vários clusters, por exemplo Sample5, Sample4 e Sample1, Sample3 e 2, e Sample6 formou um cluster aparte. Assim, poderiam ser feitos dois co-assemblies e um assembly individual. No entanto para facilitar o processo no tutorial, será feito um co-assembly só, com todas as amostras.
+
 
 ## 2. Montagem dos Metagenomas
 
