@@ -634,9 +634,12 @@ Use `less` para explorar o arquivo, ele deve se ver assim:
     Sample6.npo   Sample6   "#648ace"
 
 Descarregue os arquivos `.npo` e o arquivo `samples.txt`. Usando o
-seguinte script do R, grafique as curvas de saturação. \*Nota: todos os
-arquivos descarregados devem estar dentro de uma pasta só, p.e.
+seguinte script do R, grafique as curvas de saturação. **Nota:** todos
+os arquivos descarregados devem estar dentro de uma pasta só, p.e.
 `03.NonPareil`.
+
+Descarregue o script
+[Nonpareil](https://github.com/khidalgo85/Binning/blob/master/nonpareil.R)
 
 ``` r
 install.packages("Nonpareil") #para instalar o pacote
@@ -795,7 +798,7 @@ distâncias par a par:
 Por último, calcule as distâncias entre cada par de metagenomas usando
 `mash dist` e salve o resultado no arquivo `distancesOutput.tsv`.
 
-    mash dist 04.MinHash/reference.msh 04.MinHash/reference.msh -p 6 > 04.MinHash/distancesOutputFinal.tsv
+    mash dist 04.MinHash/reference.msh 04.MinHash/reference.msh -p 6 -t > 04.MinHash/distancesOutputFinal.tsv
 
 **Sintaxe** `mash dist [reference] [query] [options]`
 
@@ -805,6 +808,7 @@ Por último, calcule as distâncias entre cada par de metagenomas usando
     `fasta`.
 -   `query`: ídem
 -   `-p`: número de threads
+-   `-t`: indica o tipo de formato de matriz
 
 Descarregue o output (`04.MinHash/distancesOutputFinal.tsv`) e use o
 seguinte script do R para plotar um heatmap com as distâncias.
@@ -812,28 +816,31 @@ seguinte script do R para plotar um heatmap com as distâncias.
 ``` r
 setwd("~/04.MinHash/")
 
- data <- read.table("distancesOutputFinal.tsv")
+# install.packages('dplyr')
+library(dplyr)
+# install.packages('stringr')
+library(stringr)
+# install.packages('tidyverse')
+library(tidyverse)
 
- #install.packages("vegan")
- library(vegan)
- set.seed(2)
- 
- dst = as.matrix(data)
- 
- #install.packages("gplots")
- library(gplots)
- set.seed(2)
- x <- matrix(rnorm(100), nrow = 5)
- dist.fn <- function(x) as.dist(1-cor(t(x)))
- hclust.com <- function(x) hclust(x, method="complete")
- 
- dev.off()
- h.ori <- heatmap.2(dst, trace="none", distfun=dist.fn, 
-                    hclustfun=hclust.com,dendrogram = "row",main = "MinHash Clusterization",
-                    cexRow=0.8, # Tamanho do texto no eixo y
-                    cexCol=0.8,adjCol = c(0.5,0.2),
-                    adjRow = c(0.05,0.),
-                    srtCol=90,offsetRow=0, offsetCol=0, keysize = 1.5)
+data <- read.table("distancesOutputFinal.tsv", comment.char = '', 
+                    header = TRUE ) %>% 
+  rename(X = X.query) 
+  
+
+data$X <- str_remove_all(data$X, "04.MinHash/")
+data$X <- str_remove_all(data$X, ".fq")
+
+names <- c("X", data[,1])
+
+colnames(data) <- names
+
+data <- column_to_rownames(data, var="X")
+
+library(pheatmap)
+
+
+pheatmap(data)
 ```
 
 Vai obter um heatmap com clusterização similar a este:
@@ -941,7 +948,7 @@ frente):
 
 **Sintaxe**
 
--   `metaspades.py`: script para montar metagenomas
+-   `metaspades.py`: t para montar metagenomas
 -   `-o`: caminho para diretório de saída
 -   `-1`: caminho para diretório do pair1
 -   `-2`: caminho para diretório do pair2
@@ -1744,6 +1751,57 @@ Tabela DASTools
 
 Observe que foi possível recuperar um genoma de alta qualidade, 7 de
 média qualidade e 8 de baixa qualidade.
+
+## 9. Anotação Taxonômica
+
+Existem diversas ferramentas para anotação taxonômica, no entanto a mais
+utilizada em estudos com MAGs é
+[GTDB-tk](https://ecogenomics.github.io/GTDBTk/index.html). O qual é um
+software criado para asignação taxonômica de genomas de bactérias e
+arqueias baseado no **Genome Database Taxonomy - GTDB**. Dentro desta
+base de dados existe uma grande quantidade de MAGs obtidos de amostras
+ambientais e genomas de microrganismos isolados.
+
+### 9.1. Instalação
+
+A instalação de **GTDB-Tk** pode ser feita através de conda ao igual que
+a maioria das ferramentas.
+
+Crie um ambiente para a instalação deste programa
+
+    # Crie um ambiente e instale GTDB-Tk
+    conda create -n gtdbtk -c conda-forge -c bioconda gtdbtk
+
+Perceba que, na mesma linha de comando você criou um ambiente chamado
+gtdbtk e instalou a ferramenta.
+
+Uma vez instalado o programa, é necessário descarregar a base de dados.
+
+Primeramente ative o ambiente com `conda activate gtdbtk`
+
+A base de dados pode ser descarregada e configurada automáticamente
+usando o script `download-db.sh`. Esse script irá descarregar,
+descompactar e configurar a DB.
+
+Esse processo pode ser feito manualmente também:
+
+    # Crie um diretório para fazer download da DB
+    mkdir dbs
+    cd dbs/
+    mkdir gtdb
+    cd gtdb/
+
+    # Download
+    wget https://data.gtdb.ecogenomic.org/releases/latest/auxillary_files/gtdbtk_data.tar.gz
+
+    # Descompactando
+    tar xvzf gtdbtk_data.tar.gz
+
+    # Configurando o PATH
+    export GTDBTK_DATA_PATH="/caminho/a/dbs/gtdb/release202"
+
+Para confirmar que tudo foi corretamente instalado e configurado rode o
+comando: `gtdbtk check_install`
 
 ------------------------------------------------------------------------
 
