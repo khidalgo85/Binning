@@ -813,6 +813,9 @@ Por último, calcule as distâncias entre cada par de metagenomas usando
 Descarregue o output (`04.MinHash/distancesOutputFinal.tsv`) e use o
 seguinte script do R para plotar um heatmap com as distâncias.
 
+Descarregue o script para graficar o heatmap das distancias
+[MinHash](https://github.com/khidalgo85/Binning/blob/master/minhash.R)
+
 ``` r
 setwd("~/04.MinHash/")
 

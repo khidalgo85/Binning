@@ -558,6 +558,8 @@ mash dist 04.MinHash/reference.msh 04.MinHash/reference.msh -p 6 -t > 04.MinHash
 
 Descarregue o output (`04.MinHash/distancesOutputFinal.tsv`) e use o seguinte script do R para plotar um heatmap com as distâncias.
 
+Descarregue o script para graficar o heatmap das distancias [MinHash](https://github.com/khidalgo85/Binning/blob/master/minhash.R)
+
 ```{r, eval=FALSE}
 setwd("~/04.MinHash/")
 
