@@ -34,10 +34,8 @@ tab1 %>%
   theme(axis.title = element_text(face = "bold", colour = "Black")) +
   scale_shape_manual(values = c(17, 8, 1)) +
   ylim(50,0) + xlim(0,100) +
-  annotate("text", x = 45, y = 50, label = "High-Quality draft 9 (Comp > 90 & Cont < 5)", size = 2.5, colour= "Dark green") +
-  annotate("text", x = 45, y = 45, label = "Medium-Quality draft 11 (Comp > 50 & Cont < 10)", size = 2.5, colour= "Orange") +
-  annotate("text", x = 45, y = 40, label = "Low-Quality draft 92 (Comp < 50 & Cont > 10)", size = 2.5, colour= "Red" ) + 
+  annotate("text", x = 45, y = 50, label = "High-Quality draft 1 (Comp > 90 & Cont < 5)", size = 2.5, colour= "Dark green") +
+  annotate("text", x = 45, y = 45, label = "Medium-Quality draft 9 (Comp > 50 & Cont < 10)", size = 2.5, colour= "Orange") +
+  annotate("text", x = 45, y = 40, label = "Low-Quality draft 7 (Comp < 50 & Cont > 10)", size = 2.5, colour= "Red" ) + 
   geom_vline(xintercept=90, linetype="dashed", colour="Dark green") + geom_hline(yintercept=5, linetype="dashed", colour="Dark green") +
   geom_vline(xintercept=50, linetype="dashed", colour="orange") + geom_hline(yintercept=10, linetype="dashed", colour="Orange")
-
-p

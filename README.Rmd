@@ -63,7 +63,7 @@ A continuação uma visão geral do processo de **Binning**
 
 # Ferramentas bioinformáticas
 
-**Antes de começar: Use o tutorial de [Unix](https://github.com/khidalgo85/Unix) para aprender comandos básicos em bash que serão muito úteis para este tutorial.
+**Antes de começar:** Use o tutorial de [Unix](https://github.com/khidalgo85/Unix) para aprender comandos básicos em bash que serão muito úteis para este tutorial.
 
 ## Intalação Anaconda
 
@@ -1343,7 +1343,7 @@ A continuação um gráfico mostrando a disperssão dos MAGs segundo a qualidade
 > 🇪🇸
 A continuación un gráfico mostrando la dispersión de los MAGs segun su calidad (baseado en [MiMAG](https://www.nature.com/articles/nbt.3893)), siendo posible observar cuantos MAGs son de baja (*Low-Quality*: *Completeness < 50 & Contamination > 10*), media (*Medium-Quality*: *Completeness > 50 & Contamination < 10*) y alta (*High-Quality*: *Completeness > 90 & Contamination < 5*). Para la construcción de este gráfico, use este [script](https://github.com/khidalgo85/Binning/blob/master/Checkm.R) de R.
 
-```{r, echo=FALSE, message=FALSE, eval=FALSE}
+```{r, echo=TRUE, message=FALSE, eval=TRUE}
 ### Gráfico de dispersão dos bins baseado na completude e contaminação
 
 # Lendo os dados 
@@ -1380,18 +1380,13 @@ ggplot(aes(x=Completeness, y=Contamination, shape=Quality)) +
   theme(axis.title = element_text(face = "bold", colour = "Black")) +
   scale_shape_manual(values = c(17, 8, 1)) +
   ylim(50,0) + xlim(0,100) +
-  annotate("text", x = 45, y = 50, label = "High-Quality draft 9 (Comp > 90 & Cont < 5)", size = 2.5, colour= "Dark green") +
-  annotate("text", x = 45, y = 45, label = "Medium-Quality draft 11 (Comp > 50 & Cont < 10)", size = 2.5, colour= "Orange") +
-  annotate("text", x = 45, y = 40, label = "Low-Quality draft 92 (Comp < 50 & Cont > 10)", size = 2.5, colour= "Red" ) + 
+  annotate("text", x = 45, y = 50, label = "High-Quality draft 1 (Comp > 90 & Cont < 5)", size = 2.5, colour= "Dark green") +
+  annotate("text", x = 45, y = 45, label = "Medium-Quality draft 7 (Comp > 50 & Cont < 10)", size = 2.5, colour= "Orange") +
+  annotate("text", x = 45, y = 40, label = "Low-Quality draft 9 (Comp < 50 & Cont > 10)", size = 2.5, colour= "Red" ) + 
   geom_vline(xintercept=90, linetype="dashed", colour="Dark green") + geom_hline(yintercept=5, linetype="dashed", colour="Dark green") +
   geom_vline(xintercept=50, linetype="dashed", colour="orange") + geom_hline(yintercept=10, linetype="dashed", colour="Orange")
 
-p
 
-```
-
-```{r checkm, echo=FALSE, out.width="100%", out.height="100%", fig.align='center', fig.cap="Tabela DASTools"}
-knitr::include_graphics("imgs/checkm.png")
 ```
 
 Observe que foi possível recuperar um genoma de alta qualidade, 7 de média qualidade e 8 de baixa qualidade. 
@@ -1400,11 +1395,19 @@ Observe que foi possível recuperar um genoma de alta qualidade, 7 de média qua
 
 Existem diversas ferramentas para anotação taxonômica, no entanto a mais utilizada em estudos com MAGs é [GTDB-tk](https://ecogenomics.github.io/GTDBTk/index.html). O qual é um software criado para asignação taxonômica de genomas de bactérias e arqueias baseado no **Genome Database Taxonomy - GTDB**. Dentro desta base de dados existe uma grande quantidade de MAGs obtidos de amostras ambientais e genomas de microrganismos isolados.
 
+> 🇪🇸
+Existen diversas herramientas para anotación taxonómica, sin embargo la más utilizada en estudios con MAGs es [GTDB-tk](https://ecogenomics.github.io/GTDBTk/index.html). El cual es un software creado para asignación taxonómica de genomas de bacterias y arqueas con base en **Genome Database Taxonomy - GTDB**. Dentro de esta base de datos existe una gran cantidad de MAGs obtenidos de muestras ambientales e genomas de micoorganismos aislados.
+
 ### 9.1. Instalação
 
 A instalação de **GTDB-Tk** pode ser feita através de conda ao igual que a maioria das ferramentas.
 
 Crie um ambiente para a instalação deste programa
+
+> 🇪🇸
+La instalacion de **GTDB-Tk** puede ser realizada a travéz de conda al igual que la mayoria de herramientas.
+>
+Crie un ambiente para la instalación de este programa
 
 ```
 # Crie um ambiente e instale GTDB-Tk
@@ -1419,6 +1422,16 @@ Primeramente ative o ambiente com `conda activate gtdbtk`
 A base de dados pode ser descarregada e configurada automáticamente usando o script `download-db.sh`. Esse script irá descarregar, descompactar e configurar a DB. 
 
 Esse processo pode ser feito manualmente também:
+
+> 🇪🇸
+Perciba que, en la misma linea de comando usted creó un ambiente llamado gtdbtk e instaló la herramienta.
+>
+Una vez instalado el programa, es necesario descargar la base de datos.
+>
+La base de datos puede ser descargada y configurada automáticamente usando el script `download-db.sh`. Este script irá descargar, descompactar y configurar la DB?
+>
+Este proceso también puede ser hecho manualmente:
+
 ```
 # Crie um diretório para fazer download da DB
 mkdir dbs
@@ -1437,6 +1450,123 @@ export GTDBTK_DATA_PATH="/caminho/a/dbs/gtdb/release202"
 ```
 
 Para confirmar que tudo foi corretamente instalado e configurado rode o comando: `gtdbtk check_install`
+
+### 9.2. Uso
+
+Uando R e o arquivo de saída do CheckM `output.txt` crie uma lista dos MAGs com média e alta qualidade. A continuação encontra o [Script](https://github.com/khidalgo85/Binning/blob/master/filtering_mags.R) do R:
+
+> 🇪🇸
+Usando R y el archivo de salida de CheckM `output.txt` cree una lista de los MAGs con media e alta calidad. A continuación encontra el [Script](https://github.com/khidalgo85/Binning/blob/master/filtering_mags.R) de R: 
+
+```{r, echo=TRUE, message=FALSE, eval=TRUE}
+
+# Lendo os dados 
+
+tab <- read.delim("output.txt", skip = 33)
+
+library(dplyr)
+
+## Formatando a tabela
+tab1 <- as_tibble(tab) %>% 
+  na.omit() %>% 
+  select(1,12,13) %>% 
+  mutate(Quality = case_when(Contamination < 5 & Completeness > 90 ~ "High-Quality",
+                             Contamination < 10 & Completeness >= 50 ~ "Medium-Quality",
+                             Completeness < 50 ~ "Low-Quality",
+                             Contamination > 10 ~ "Low-Quality"))
+
+## Contando os MAGs por qualidade
+
+tab1 %>% 
+  group_by(Quality) %>% 
+  summarise(
+    n=n()
+  )
+
+### Criando tabela só com os MAGs de alta e média qualidade
+mags.filtered <- tab1 %>% 
+  group_by(Quality) %>% 
+  filter(Quality == "High-Quality" | Quality == "Medium-Quality") %>% 
+  ungroup() %>% 
+  select(Bin.Id) %>% 
+  as.data.frame()
+
+fa <- c(rep(".fa", nrow(mags.filtered))) ## add .fa a cada nome do MAG
+
+
+mags <- mags.filtered[,1] %>% 
+  paste0(., fa) %>% 
+  write(., file="filt.mags.txt") # salva o arquivo com a lista dos Mags que passaram o filtro
+
+
+mags.filtered
+```
+
+Faça upload do arquivo criado com o script do R `filt.mags.txt` no servidor dentro da pasta base. Este arquivo será usado para separar os MAGs de alta e média qualidade dos de baixa que não serão usados nas seguintes análises. 
+
+> 🇪🇸
+Haga el upload del archivo creado com el script de R `filt.mags.txt` al servidor dentro de la pasta base. Este archivo será usado para separa los MAGs de alta y media calidad de los de baja calidad que no serán usados en los siguentes análisis.
+
+```
+# Entre na pasta dos MAGs
+cd 13.MAGS
+
+# Crie um diretório para colocar os MAGs com alta e média qualidade
+mkdir HQ_MQ_MAGs
+
+# Crie um diretório para colocar os MAGs com baixa qualidade
+mkdir LQ_MAGs
+```
+
+Uma vez criados os diretórios para separar os MAGs pela qualidade, será usado o arquivo com a lista de MAGs que passaram o filtro:
+
+> 🇪🇸
+Una vez creados los directorios para separar los MAGs por la calidad, será usado un archivo con la lista de MAGs que pasaron el filtro:
+
+```
+cat ../filt.mags.txt | xargs mv -t HQ_MQ_MAGs/
+
+ls HQ_MQ_MAGs
+```
+
+Com o comando anterior, os MAGs que estiverem na lista do arquivo `filt.mags.txt` serão trocados de pasta para o diretório `HQ_MQ_MAGs/`. Se preferir, para organizar melhor, passe o restante dos MAGs dentro da pasta `13.MAGS/` (MAGs com baixa qualidade) para o diretório `LQ_MAGs/`.
+
+> 🇪🇸
+Con el comando anterior, los MAGs que estén en la lista del archivo `filt.mags.txt` serán cambiados de carpeta para el directorio `HQ_MQ_MAGs/`. Si prifiere, para organizar mejor, pase el restante de MAGs dentro de la carpeta `13.MAGS` (MAGs con baja calidad) para el directorio `LQ_MAGs/`.
+
+```
+mv *.fa LQ_MAGs/
+```
+
+Pronto, agora pode proceder à anotação taxonômica dos MAGs de alta e média qualidade usando o programa **GTDB-tk**.
+
+```
+cd ..
+
+mkdir 15.TaxonomicAnnotation
+
+gtdbtk classify_wf --genome_dir 13.MAGS/HQ_MQ_MAGs/ --out_dir 15.TaxonomicAnnotation/ -x fa --min_perc_aa 10 --cpus 15 --scratch_dir slower
+```
+
+**SINTAXE**
+```
+gtdbtk classify_wf --genome_dir diretorio/com/os/Mags/ --out_dir output/ -x <fa fasta fna> --cpus <número de núcleos>
+```
+
+* `classify_wf`: este script consiste em três fases (que também podem ser feitas por separado); `identify`, `align` e `classify`. `identify` gerá uma predição de genes usando **Prodigal** e usa **HMMER** para identificar 120 genes marcadores de bactéria e archaea usados para inferência flogenética. São feitos alinhamentos múltiplos no alinhamento dos marcadores nos modelos HMM. `align` concatena os marcadores de genes alinhados e filtra o alinhamento multiplo a aproximadamente 5,000 amino ácidos. `classify`, usa **pplacer** usando *maximun-likelihood* para colocar cada genoma numa árvore de referência de GTDB-Tk, o qual classifica cada genoma baseado no seu lugar na árvore de referência, a sua divergência evolucionaria relativa, e/ou o ANI (*average nucleotide identity*) contra genomas de referência. 
+
+> 🇪🇸
+* `classify_wf`: este script consiste en tres fases (que también pueden ser realizadas por separado); `identify`, `align` e `classify`. `identify` genera una predicción de genes usando **Prodigal** y usa **HMMER** para identificar 120 genes marcadores de bacteria e arquea usados para inferencia flogenética. Son realizados alineamintos múltiples en el alineamiento de los marcadores en los modelos HMM. `align` concatena los marcadores de genes alineados y filtra el alineamiento multiple a aproximadamente 5,000 amino ácidos. `classify`, usa **pplacer** usando *maximun-likelihood* para colocar cada genoma en un árbol de referencia de GTDB-Tk, oel cual clasifica cada genoma con base al lugar en el árbol de referencia, a su divergencia evolucionaria relativa, y/o el ANI (*average nucleotide identity*) contra genomas de referencia. 
+
+
+* `--genome_dir`: Diretório com os genomas
+
+* `out_dir`: Diretório para o output. Nele serão criadas automáticamente pastas para cada uma das fases do processo.
+
+* `-x`: formato (p.e. `.fa`, `.fasta`, `.fna`)
+
+* `--cpus`: número de núcleos ou threads.
+
 
 
 ---

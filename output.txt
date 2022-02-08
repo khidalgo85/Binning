@@ -1,0 +1,52 @@
+[2022-01-27 09:58:47] INFO: CheckM v1.1.3
+[2022-01-27 09:58:47] INFO: checkm lineage_wf 13.MAGS/ 14.CheckM/ -t 6 -x fa --tmpdir tmp/ --tab
+[2022-01-27 09:58:47] INFO: [CheckM - tree] Placing bins in reference genome tree.
+[2022-01-27 09:58:47] INFO: Identifying marker genes in 17 bins with 6 threads:
+[2022-01-27 09:59:00] INFO: Saving HMM info to file.
+[2022-01-27 09:59:00] INFO: Calculating genome statistics for 17 bins with 6 threads:
+[2022-01-27 09:59:00] INFO: Extracting marker genes to align.
+[2022-01-27 09:59:00] INFO: Parsing HMM hits to marker genes:
+[2022-01-27 09:59:00] INFO: Extracting 43 HMMs with 6 threads:
+[2022-01-27 09:59:01] INFO: Aligning 43 marker genes with 6 threads:
+[2022-01-27 09:59:01] INFO: Reading marker alignment files.
+[2022-01-27 09:59:01] INFO: Concatenating alignments.
+[2022-01-27 09:59:01] INFO: No genomes were identified that could be placed in the reference genome tree.
+[2022-01-27 09:59:01] INFO: { Current stage: 0:00:13.979 || Total: 0:00:13.979 }
+[2022-01-27 09:59:01] INFO: [CheckM - lineage_set] Inferring lineage-specific marker sets.
+[2022-01-27 09:59:01] INFO: Reading HMM info from file.
+[2022-01-27 09:59:01] INFO: Parsing HMM hits to marker genes:
+[2022-01-27 09:59:01] INFO: Determining marker sets for each genome bin.
+[2022-01-27 09:59:02] INFO: Marker set written to: 14.CheckM/lineage.ms
+[2022-01-27 09:59:02] INFO: { Current stage: 0:00:01.329 || Total: 0:00:15.309 }
+[2022-01-27 09:59:02] INFO: [CheckM - analyze] Identifying marker genes in bins.
+[2022-01-27 09:59:03] INFO: Identifying marker genes in 17 bins with 6 threads:
+[2022-01-27 10:00:30] INFO: Saving HMM info to file.
+[2022-01-27 10:00:30] INFO: { Current stage: 0:01:27.739 || Total: 0:01:43.049 }
+[2022-01-27 10:00:30] INFO: Parsing HMM hits to marker genes:
+[2022-01-27 10:00:31] INFO: Aligning marker genes with multiple hits in a single bin:
+[2022-01-27 10:00:32] INFO: { Current stage: 0:00:02.604 || Total: 0:01:45.653 }
+[2022-01-27 10:00:32] INFO: Calculating genome statistics for 17 bins with 6 threads:
+[2022-01-27 10:00:33] INFO: { Current stage: 0:00:00.729 || Total: 0:01:46.382 }
+[2022-01-27 10:00:33] INFO: [CheckM - qa] Tabulating genome statistics.
+[2022-01-27 10:00:33] INFO: Calculating AAI between multi-copy marker genes.
+[2022-01-27 10:00:33] INFO: Reading HMM info from file.
+[2022-01-27 10:00:33] INFO: Parsing HMM hits to marker genes:
+Bin Id	Marker lineage	# genomes	# markers	# marker sets	0	1	2	3	4	5+	Completeness	Contamination	Strain heterogeneity
+MAG1	root (UID1)	5656	56	24	55	1	0	0	0	0	4.17	0.00	0.00
+MAG10	root (UID1)	5656	56	24	20	35	1	0	0	0	62.50	0.38	100.00
+MAG11	root (UID1)	5656	56	24	40	15	1	0	0	0	51.04	1.39	100.00
+MAG12	root (UID1)	5656	56	24	10	46	0	0	0	0	94.30	0.00	0.00
+MAG13	root (UID1)	5656	56	24	5	45	6	0	0	0	82.87	13.78	50.00
+MAG14	root (UID1)	5656	56	24	54	2	0	0	0	0	8.33	0.00	0.00
+MAG15	root (UID1)	5656	56	24	41	15	0	0	0	0	36.38	0.00	0.00
+MAG16	root (UID1)	5656	56	24	35	16	5	0	0	0	58.10	20.83	0.00
+MAG17	root (UID1)	5656	56	24	56	0	0	0	0	0	0.00	0.00	0.00
+MAG2	root (UID1)	5656	56	24	0	53	3	0	0	0	100.00	8.33	100.00
+MAG3	root (UID1)	5656	56	24	19	34	3	0	0	0	74.10	1.14	0.00
+MAG4	root (UID1)	5656	56	24	51	5	0	0	0	0	16.67	0.00	0.00
+MAG5	root (UID1)	5656	56	24	28	17	10	1	0	0	66.67	44.21	15.38
+MAG6	root (UID1)	5656	56	24	19	37	0	0	0	0	52.08	0.00	0.00
+MAG7	root (UID1)	5656	56	24	14	37	5	0	0	0	75.00	9.90	60.00
+MAG8	root (UID1)	5656	56	24	13	40	3	0	0	0	83.91	8.71	66.67
+MAG9	root (UID1)	5656	56	24	45	11	0	0	0	0	27.60	0.00	0.00
+[2022-01-27 10:00:34] INFO: { Current stage: 0:00:01.251 || Total: 0:01:47.634 }

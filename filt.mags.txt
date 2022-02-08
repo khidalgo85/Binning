@@ -1,0 +1,8 @@
+MAG10.fa
+MAG11.fa
+MAG12.fa
+MAG2.fa
+MAG3.fa
+MAG6.fa
+MAG7.fa
+MAG8.fa
