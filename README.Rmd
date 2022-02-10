@@ -1568,6 +1568,245 @@ gtdbtk classify_wf --genome_dir diretorio/com/os/Mags/ --out_dir output/ -x <fa 
 * `--cpus`: número de núcleos ou threads.
 
 
+### 9.3. Output
+
+Após a corrida de **GTDB-Tk** serão gerados uma série de arquivos e pastas com resultados de cada fase do processo. Esta ferramenta separa os resultados dos MAGs que foram anotados como bactérias e como Arqueias. Isto devido a que usa dois bases de dados separadas para cada dominio. Assím, os arquivos com os resultados finais são `gtdbtk_bac120.summary.tsv` e `gtdbtk_ar122.summary.tsv`. Estes arquivos são tabelas com as seguintes colunas:
+
+* user_genome: Nome do MAG
+* Classification: Taxonomia inferida por GTDB-Tk. 
+* fastani_reference: Indica o número de acesso do genoma de referência ao qual o MAG foi assignado baseado no ANI (*Average Nucleotide Identity*)
+* fastani_reference_radius: Informação númerica do ANI
+* fastani_taxonomy: Indica a taxonomia do GTDB para o genoma de referência
+* fastani_ani: Indica o valor de ANI entre o MAG e o genoma de referência
+* fastani_af: infica o valor de AF entre o MAG e o genoma de referência
+* closest_placement_reference: Indica o número de acesso ao genoma de referência quando o MAG e colocado em um branch terminal
+* closest_placemente_taxonomy: Indica a taxonomia do GTDB para o genoma de referência de cima
+* closest_placement_ani: Indica o valor de ANI entre o MAG e o genoma de referência de cima.
+* closest_placement_af: Indica o valor de AF entre o MAG e o genoma de referência de cima
+* pplacer_taxonomy: Indica a taxonomia do pplacer para o MAG
+* classification_method: Indica o método usado para a classificação do MAG.
+* note: provee informação adicional da clasificação do MAG. Este campo é prenchido quando a determinação da espécie é feita e indica se a colocação de MAG dentro de uma árvore de referência e o parente mais próximo baseado no ANI/AF são iguais (congruent) ou diferentes (incongruent).
+* other_relate_references: lista de 100 genomas de referência próximos baseadso no ANI.
+* mas_percent: Indica a porcentagem do MSA 
+
+**TABELA**
+
+Usando R, contrua uma tabela única com as informações das taxonomias e da qualidade dos MAGs:
+
+```{r, message=FALSE}
+## Construindo tabela com taxonomia e qualidade dos mags
+
+## install.packages('dplyr')
+library(dplyr)
+
+## install.packages('tidyr')
+library(tidyr)
+
+
+## Lendo a tabela saída do CheckM com a qualidade dos MAGs
+quality <- read.delim("output.txt", skip = 33) %>% 
+  select(Bin.Id, Completeness, Contamination) %>% 
+  na.omit() %>% 
+  as_tibble() %>% 
+  rename(Genome = Bin.Id)
+
+## Lendo a tabela de anotação taxonômica de bactérias
+bact.taxa <- read.delim("gtdbtk.bac120.summary.tsv",
+                        sep = '\t') %>% 
+  select(user_genome, classification, classification_method, note) %>% 
+  rename(Bin.Id = user_genome) %>% 
+  as_tibble() %>% 
+  separate(col = classification, into = c("Domain", "Phyla", "Class", "Order",
+                                          "Family", "Genus", "Species"), sep = ';')
+
+
+## Lendo a tabela de anotação taxonômica de Arqueas
+arc.taxa <- read.delim("gtdbtk.ar122.summary.tsv",
+                       sep = '\t') %>% 
+  select(user_genome, classification, classification_method, note) %>% 
+  rename(Bin.Id = user_genome) %>% 
+  as_tibble() %>% 
+  separate(col = classification, into = c("Domain", "Phyla", "Class", "Order",
+                                          "Family", "Genus", "Species"), sep = ';')
+
+
+## Unindo as tabelas de taxonomia
+taxa <- rbind(bact.taxa,  arc.taxa) %>%
+  rename(Genome = Bin.Id) 
+
+## Unindo a taxonomia com a qualidade
+taxa <- merge(quality, taxa, by = "Genome") 
+
+
+# Eliminando caracteres indesejados na taxonomia 
+taxa$Domain<-gsub("d__","",as.character(taxa$Domain))
+taxa$Phyla<-gsub("p__","",as.character(taxa$Phyla))
+taxa$Class<-gsub("c__","",as.character(taxa$Class))
+taxa$Order<-gsub("o__","",as.character(taxa$Order))
+taxa$Family<-gsub("f__","",as.character(taxa$Family))
+taxa$Genus<-gsub("g__","",as.character(taxa$Genus))
+taxa$Species<-gsub("s__","",as.character(taxa$Species))
+
+
+
+# Classificando os MAGs pela qualidade
+taxa2 <- taxa %>% 
+  mutate(Quality = if_else(Completeness > 90 & Contamination < 5, "HighQuality",
+                           "MediumQuality"))
+
+```
+
+```{r, echo=FALSE, message=FALSE}
+
+library(dplyr)
+library(kableExtra)
+
+df<- taxa2
+color.me <- which(df$Quality == "HighQuality")
+
+color.me1 <- which(df$Quality == "MediumQuality")
+
+df %>% 
+  kable(escape = F, full_width = FALSE) %>%
+  kable_styling() %>%
+  row_spec(color.me, bold = T, color = "white", background = "green") %>% 
+  kable_styling() %>%
+  row_spec(color.me1, bold = T, color = "white", background = "orange") %>% 
+  row_spec(0, background = "rgb(172, 178, 152)", color = "black", font_size = 15)
+```
+
+
+
+## 10. Anotação Funcional
+
+Além da anotação taxonômica pode ser feita uma anotação funcional para conhecer o potencial metabólico de cada um dos MAGs obtidos. Esta fase está divida em dois grandes processos: i) predição dos genes, ii) alinhamento dos genes preditos contra adiferentes bases de dados. 
+
+### 10.1 Predição de genes
+
+O objetivo desta etapa é procurar os mascos abertos de leitura ou ORF (*Open Reading Frames*) dentro dos MAGs. Ou seja, predizer onde inicam e terminam os genes. Basicamente o programa procura por codons de inicio, principalmente **ATG**, porém também são codons de iniciação **GTG** e **TTG**. Depois, o programa procura os codons de parada, como **TAA, TAG** e **TGA**.
+
+> 🇪🇸 El objetivo de esta etapa es buscar los marcos abiertos de lectura o ORF (en inglés) dentro de los MAGs. O sea, predecir donde incian y terminan los genes. Basicamente el programa busca por códones de inicio, principalmente **ATG**, sin embargo también son códones de inico **GTG** e **TTG**. Después, busca los códones de parada, como **TAA**, **TAG** y **TGA**.
+
+O programa a usar para a predição das ORFs em procarioros é [Prodigal (*Prokaryotic Dynamic Programming Gene Fiding Algorithm*)](https://github.com/hyattpd/Prodigal).
+
+#### 10.1.1 Instalação
+
+Crie um novo ambiente para instalação das ferramentas relacionadas com à anotação de genes, chamado **Annotation**
+
+```
+# Crie o ambiente
+conda create -n Annotation
+
+# Ative o ambiente
+conda activate Annotation
+
+# Instale Prodigal
+conda install -c bioconda prodigal
+```
+
+#### 10.1.2. Uso
+
+Crie uma pasta chamada `16.GenePrediction` para colocar a saída do **Prodigal**.
+
+`mkdir 16.GenePrediction`
+
+A continuação encontrara o comando **individual** (Um MAG por vez)
+
+```
+prodigal -i 13.MAGS/HQ_MQ_MAGs/MAG1.fa -f gff -o 16.GenePrediction/MAG1.gff -a 16.GenePrediction/MAG1.faa -d 16.GenePrediction/MAG1.fa -p single
+```
+
+Se quiser pode rodar a análises para vários MAGs ao mesmo tempo, usando o seguinte loop:
+
+```
+for i in 13.MAGS/HQ_MQ_MAGs/*.fa
+do
+BASE=$(basename $i .fa)
+prodigal -i $i -f gff -o 16.GenePrediction/${BASE}.gff -a 16.GenePrediction/${BASE}.faa -d 16.GenePrediction/${BASE}.fa -p single
+done
+```
+
+**SINTAXE**
+
+```
+prodigal -i genome.fasta -f <gbk, gff, sqn, sco> -o coordfile -a proteins.faa -d nucleotides.fa
+```
+* `-i`: caminho para o genoma em formato `.fasta`, `.fa` ou `.fna`
+* `-f`: formato de saída para o arquivo de coordenadas, default `.gbk`(*Genbank-like format*), `.gff` (`Gene Feature Format`), `.sqn` (*Sequin feature format*), ou `.sco` (*Simple Coordinate Output*)
+* `-o`: arquivo output com as coordenadas das ORFs
+* `-a`: sequências das ORFs em proteína
+* `-d`: sequências das ORFs em nucleotídeos
+
+**Formato `.gff` (Gene Feature Format)**
+
+🇧🇷 Este formato guarda as informações dos genes preditos pelo Prodigal. Explore-o (`less GenesCoordenates.gff`).
+
+Cada sequência comença com um *header* com as informações da sequência analizada, seguido de uma tabela separada por tabulações com informações dos genes encontrados em dita sequência.
+
+O *header* contém os seguentes campos:
+
+> 🇪🇸 Este formato guarda las informaciones de los genes predichos por Prodigal. Explorelo (`less GenesCoordenates.gff`).
+> 
+> Cada secuencia comienza con un *header* con las informaciones de la secuencia analizada, seguido de una tabla separada por tabulaciones con informaciones de los genes encontrados en dicha secuencia.
+> 
+> El *header* contiene los siguientes campos:
+
+* **seqnum**: O número da sequência, começando pelo número 1.
+* **seqlen**: tamanho em bases da sequência
+* **seqhdr**: título completo da sequência extraído do arquivo `.fasta`.
+* **version**: versão do Prodigal usado
+* **run_type**: modo de corrida, p.e. m*metagenomic*
+* **model**: informação sob o arquivo de treinamento usado para a predição.
+* **gc_cont**: % de GC na sequência
+* **transl_table**: Tabela do código genético usada para analizar a sequência. Para bactérias e archaeas é usada a [tabela 11](https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi#SG11).
+* **uses_sd**: 1 se o Prodigal usa o *[RBS](https://parts.igem.org/Ribosome_Binding_Sites) finder*, ou 0 se usa outros *motifs*. 
+
+Después do *header* se encuentra una tabla con las informaciones de los genes encontrados:
+
+* **seqname**: nome da sequência, neste caso nome do scaffold/contig.
+* **source**: nome do programa que gerou a predição
+* **feature**: tipo de *feature*, p.e. CDS (*Coding DNA Sequence*)
+* **start**: primeira posição da *feature*
+* **end**: útlima posição da *feature*
+* **score**: Valor numerico que geralmente indica a confiança do programa na predição da ORF.
+* **strand**: fita do DNA que foi encontrado a *feature*. A fita *forward* é definida como '+', e a *reverse* como '-'.
+* **frame**: 0 indica que a primeira base da *feature* é a primeira base do códon de inicio, 1, que a segunda base da *feature* é a primeira base do códon de inicio.
+* **atribute**: información adicional sobre la *feature*, parada por ponto e vìrgula ";".  
+
+  * **ID**: identificador único de cada gene, consistindo em um número ordinal ID da sequência e um número ordinal ID do número do gene separados por "_". Por exemplo "1_688" siginifa que é o gene número 688 da sequência 1.
+  * **partial**: indica se o gene está completo ou não. "0" indica que no gene foi encontrado o códon de inicio ou de parada, "01" indica que no gene só foi encontrado o cóndon de inicio, "11" indica que não foram encontrados nenhum dos dois códons e "00" indica que foram encontrados ambos códons.
+  * **start_type**: sequência do códon de inicio.
+  * **stop_type**: sequências do códon de parada
+  * **rbs_motif**: *RBS motif* encontrado pelo Prodigal
+  * **rbs_spacer**: número de bases entre o códon de inicio e o *motif* observado.
+  * **gc_cont**: Conetúdo de GC no gene
+  * **conf**: nota de confiança pra o gene, representa a probabilidade que esse gene seja real. 
+  * **score**: *score* total pro gene
+  * **cscore**: fração hexamero do *score*, o quanto este gene se parece com uma proteína verdadeira.
+  * **sscore**: *score* para o sitio de inicio da tradução do gene. é a soma dos três seguintes *scores*.
+  * **rscore**: *score* pro *RBS motif*
+  * **uscores**: *score* pra sequência em torno do códon de início.
+  * **tscore**: *score* para o tipo de códon de inicio
+  * **mscore**: *score* pros sinais restantes (tipo de códon de parada e informações da fita principal / reversa).
+  
+
+Uma vez terminado o processo, pode explorar os diferentes arquivos de saída para conhecer a fondo a estrutura de cada um deles e as informações que cada um tem.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ---
 

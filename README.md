@@ -2037,6 +2037,651 @@ média qualidade usando o programa **GTDB-tk**.
 
 -   `--cpus`: número de núcleos ou threads.
 
+### 9.3. Output
+
+Após a corrida de **GTDB-Tk** serão gerados uma série de arquivos e
+pastas com resultados de cada fase do processo. Esta ferramenta separa
+os resultados dos MAGs que foram anotados como bactérias e como
+Arqueias. Isto devido a que usa dois bases de dados separadas para cada
+dominio. Assím, os arquivos com os resultados finais são
+`gtdbtk_bac120.summary.tsv` e `gtdbtk_ar122.summary.tsv`. Estes arquivos
+são tabelas com as seguintes colunas:
+
+-   user\_genome: Nome do MAG
+-   Classification: Taxonomia inferida por GTDB-Tk.
+-   fastani\_reference: Indica o número de acesso do genoma de
+    referência ao qual o MAG foi assignado baseado no ANI (*Average
+    Nucleotide Identity*)
+-   fastani\_reference\_radius: Informação númerica do ANI
+-   fastani\_taxonomy: Indica a taxonomia do GTDB para o genoma de
+    referência
+-   fastani\_ani: Indica o valor de ANI entre o MAG e o genoma de
+    referência
+-   fastani\_af: infica o valor de AF entre o MAG e o genoma de
+    referência
+-   closest\_placement\_reference: Indica o número de acesso ao genoma
+    de referência quando o MAG e colocado em um branch terminal
+-   closest\_placemente\_taxonomy: Indica a taxonomia do GTDB para o
+    genoma de referência de cima
+-   closest\_placement\_ani: Indica o valor de ANI entre o MAG e o
+    genoma de referência de cima.
+-   closest\_placement\_af: Indica o valor de AF entre o MAG e o genoma
+    de referência de cima
+-   pplacer\_taxonomy: Indica a taxonomia do pplacer para o MAG
+-   classification\_method: Indica o método usado para a classificação
+    do MAG.
+-   note: provee informação adicional da clasificação do MAG. Este campo
+    é prenchido quando a determinação da espécie é feita e indica se a
+    colocação de MAG dentro de uma árvore de referência e o parente mais
+    próximo baseado no ANI/AF são iguais (congruent) ou diferentes
+    (incongruent).
+-   other\_relate\_references: lista de 100 genomas de referência
+    próximos baseadso no ANI.
+-   mas\_percent: Indica a porcentagem do MSA
+
+**TABELA**
+
+Usando R, contrua uma tabela única com as informações das taxonomias e
+da qualidade dos MAGs:
+
+``` r
+## Construindo tabela com taxonomia e qualidade dos mags
+
+## install.packages('dplyr')
+library(dplyr)
+
+## install.packages('tidyr')
+library(tidyr)
+
+
+## Lendo a tabela saída do CheckM com a qualidade dos MAGs
+quality <- read.delim("output.txt", skip = 33) %>% 
+  select(Bin.Id, Completeness, Contamination) %>% 
+  na.omit() %>% 
+  as_tibble() %>% 
+  rename(Genome = Bin.Id)
+
+## Lendo a tabela de anotação taxonômica de bactérias
+bact.taxa <- read.delim("gtdbtk.bac120.summary.tsv",
+                        sep = '\t') %>% 
+  select(user_genome, classification, classification_method, note) %>% 
+  rename(Bin.Id = user_genome) %>% 
+  as_tibble() %>% 
+  separate(col = classification, into = c("Domain", "Phyla", "Class", "Order",
+                                          "Family", "Genus", "Species"), sep = ';')
+
+
+## Lendo a tabela de anotação taxonômica de Arqueas
+arc.taxa <- read.delim("gtdbtk.ar122.summary.tsv",
+                       sep = '\t') %>% 
+  select(user_genome, classification, classification_method, note) %>% 
+  rename(Bin.Id = user_genome) %>% 
+  as_tibble() %>% 
+  separate(col = classification, into = c("Domain", "Phyla", "Class", "Order",
+                                          "Family", "Genus", "Species"), sep = ';')
+
+
+## Unindo as tabelas de taxonomia
+taxa <- rbind(bact.taxa,  arc.taxa) %>%
+  rename(Genome = Bin.Id) 
+
+## Unindo a taxonomia com a qualidade
+taxa <- merge(quality, taxa, by = "Genome") 
+
+
+# Eliminando caracteres indesejados na taxonomia 
+taxa$Domain<-gsub("d__","",as.character(taxa$Domain))
+taxa$Phyla<-gsub("p__","",as.character(taxa$Phyla))
+taxa$Class<-gsub("c__","",as.character(taxa$Class))
+taxa$Order<-gsub("o__","",as.character(taxa$Order))
+taxa$Family<-gsub("f__","",as.character(taxa$Family))
+taxa$Genus<-gsub("g__","",as.character(taxa$Genus))
+taxa$Species<-gsub("s__","",as.character(taxa$Species))
+
+
+
+# Classificando os MAGs pela qualidade
+taxa2 <- taxa %>% 
+  mutate(Quality = if_else(Completeness > 90 & Contamination < 5, "HighQuality",
+                           "MediumQuality"))
+```
+
+<table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Genome
+</th>
+<th style="text-align:right;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Completeness
+</th>
+<th style="text-align:right;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Contamination
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Domain
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Phyla
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Class
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Order
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Family
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Genus
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Species
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+classification\_method
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+note
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Quality
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG10
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+62.50
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.38
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Desulfobacterota\_F
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Desulfuromonadia
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Geobacterales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Geobacteraceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Geobacter\_D
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+taxonomic classification defined by topology and ANI
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+N/A
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MediumQuality
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG11
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+51.04
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+1.39
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteroidota
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Kapabacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Kapabacteriales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA2268
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+taxonomic classification fully defined by topology
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+N/A
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MediumQuality
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+MAG12
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+94.30
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+0.00
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Bacteroidota
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Ignavibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+SJA-28
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+B-1AR
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Ch128a
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+taxonomic classification defined by topology and ANI
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+N/A
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+HighQuality
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG2
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+100.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+8.33
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteroidota
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Ignavibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Ignavibacteriales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Melioribacteraceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+XYB12-FULL-38-5
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+taxonomic novelty determined using RED
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+N/A
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MediumQuality
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG3
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+74.10
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+1.14
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteroidota
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteroidia
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteroidales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+BBW3
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA8529
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+ANI
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+N/A
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MediumQuality
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG6
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+52.08
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.00
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Patescibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Paceibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA9983\_A
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA9973
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA9973
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+taxonomic classification defined by topology and ANI
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+N/A
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MediumQuality
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG7
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+75.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+9.90
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Archaea
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Thermoproteota
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Nitrososphaeria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Nitrososphaerales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Nitrosopumilaceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Nitrosotenuis
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Nitrosotenuis cloacae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+taxonomic classification defined by topology and ANI
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+topological placement and ANI have congruent species assignments
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MediumQuality
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG8
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+83.91
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+8.71
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Firmicutes\_B
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Thermincolia
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Thermincolales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA2595
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+GW-Firmicutes-8
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+taxonomic classification defined by topology and ANI
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+N/A
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MediumQuality
+</td>
+</tr>
+</tbody>
+</table>
+
+## 10. Anotação Funcional
+
+Além da anotação taxonômica pode ser feita uma anotação funcional para
+conhecer o potencial metabólico de cada um dos MAGs obtidos. Esta fase
+está divida em dois grandes processos: i) predição dos genes, ii)
+alinhamento dos genes preditos contra adiferentes bases de dados.
+
+### 10.1 Predição de genes
+
+O objetivo desta etapa é procurar os mascos abertos de leitura ou ORF
+(*Open Reading Frames*) dentro dos MAGs. Ou seja, predizer onde inicam e
+terminam os genes. Basicamente o programa procura por codons de inicio,
+principalmente **ATG**, porém também são codons de iniciação **GTG** e
+**TTG**. Depois, o programa procura os codons de parada, como **TAA,
+TAG** e **TGA**.
+
+> 🇪🇸 El objetivo de esta etapa es buscar los marcos abiertos de lectura
+> o ORF (en inglés) dentro de los MAGs. O sea, predecir donde incian y
+> terminan los genes. Basicamente el programa busca por códones de
+> inicio, principalmente **ATG**, sin embargo también son códones de
+> inico **GTG** e **TTG**. Después, busca los códones de parada, como
+> **TAA**, **TAG** y **TGA**.
+
+O programa a usar para a predição das ORFs em procarioros é [Prodigal
+(*Prokaryotic Dynamic Programming Gene Fiding
+Algorithm*)](https://github.com/hyattpd/Prodigal).
+
+#### 10.1.1 Instalação
+
+Crie um novo ambiente para instalação das ferramentas relacionadas com à
+anotação de genes, chamado **Annotation**
+
+    # Crie o ambiente
+    conda create -n Annotation
+
+    # Ative o ambiente
+    conda activate Annotation
+
+    # Instale Prodigal
+    conda install -c bioconda prodigal
+
+#### 10.1.2. Uso
+
+Crie uma pasta chamada `16.GenePrediction` para colocar a saída do
+**Prodigal**.
+
+`mkdir 16.GenePrediction`
+
+A continuação encontrara o comando **individual** (Um MAG por vez)
+
+    prodigal -i 13.MAGS/HQ_MQ_MAGs/MAG1.fa -f gff -o 16.GenePrediction/MAG1.gff -a 16.GenePrediction/MAG1.faa -d 16.GenePrediction/MAG1.fa -p single
+
+Se quiser pode rodar a análises para vários MAGs ao mesmo tempo, usando
+o seguinte loop:
+
+    for i in 13.MAGS/HQ_MQ_MAGs/*.fa
+    do
+    BASE=$(basename $i .fa)
+    prodigal -i $i -f gff -o 16.GenePrediction/${BASE}.gff -a 16.GenePrediction/${BASE}.faa -d 16.GenePrediction/${BASE}.fa -p single
+    done
+
+**SINTAXE**
+
+    prodigal -i genome.fasta -f <gbk, gff, sqn, sco> -o coordfile -a proteins.faa -d nucleotides.fa
+
+-   `-i`: caminho para o genoma em formato `.fasta`, `.fa` ou `.fna`
+-   `-f`: formato de saída para o arquivo de coordenadas, default
+    `.gbk`(*Genbank-like format*), `.gff` (`Gene Feature Format`),
+    `.sqn` (*Sequin feature format*), ou `.sco` (*Simple Coordinate
+    Output*)
+-   `-o`: arquivo output com as coordenadas das ORFs
+-   `-a`: sequências das ORFs em proteína
+-   `-d`: sequências das ORFs em nucleotídeos
+
+**Formato `.gff` (Gene Feature Format)**
+
+🇧🇷 Este formato guarda as informações dos genes preditos pelo Prodigal.
+Explore-o (`less GenesCoordenates.gff`).
+
+Cada sequência comença com um *header* com as informações da sequência
+analizada, seguido de uma tabela separada por tabulações com informações
+dos genes encontrados em dita sequência.
+
+O *header* contém os seguentes campos:
+
+> 🇪🇸 Este formato guarda las informaciones de los genes predichos por
+> Prodigal. Explorelo (`less GenesCoordenates.gff`).
+>
+> Cada secuencia comienza con un *header* con las informaciones de la
+> secuencia analizada, seguido de una tabla separada por tabulaciones
+> con informaciones de los genes encontrados en dicha secuencia.
+>
+> El *header* contiene los siguientes campos:
+
+-   **seqnum**: O número da sequência, começando pelo número 1.
+-   **seqlen**: tamanho em bases da sequência
+-   **seqhdr**: título completo da sequência extraído do arquivo
+    `.fasta`.
+-   **version**: versão do Prodigal usado
+-   **run\_type**: modo de corrida, p.e. m*metagenomic*
+-   **model**: informação sob o arquivo de treinamento usado para a
+    predição.
+-   **gc\_cont**: % de GC na sequência
+-   **transl\_table**: Tabela do código genético usada para analizar a
+    sequência. Para bactérias e archaeas é usada a [tabela
+    11](https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi#SG11).
+-   **uses\_sd**: 1 se o Prodigal usa o
+    *[RBS](https://parts.igem.org/Ribosome_Binding_Sites) finder*, ou 0
+    se usa outros *motifs*.
+
+Después do *header* se encuentra una tabla con las informaciones de los
+genes encontrados:
+
+-   **seqname**: nome da sequência, neste caso nome do scaffold/contig.
+
+-   **source**: nome do programa que gerou a predição
+
+-   **feature**: tipo de *feature*, p.e. CDS (*Coding DNA Sequence*)
+
+-   **start**: primeira posição da *feature*
+
+-   **end**: útlima posição da *feature*
+
+-   **score**: Valor numerico que geralmente indica a confiança do
+    programa na predição da ORF.
+
+-   **strand**: fita do DNA que foi encontrado a *feature*. A fita
+    *forward* é definida como ‘+’, e a *reverse* como ‘-’.
+
+-   **frame**: 0 indica que a primeira base da *feature* é a primeira
+    base do códon de inicio, 1, que a segunda base da *feature* é a
+    primeira base do códon de inicio.
+
+-   **atribute**: información adicional sobre la *feature*, parada por
+    ponto e vìrgula “;”.
+
+    -   **ID**: identificador único de cada gene, consistindo em um
+        número ordinal ID da sequência e um número ordinal ID do número
+        do gene separados por "\_“. Por exemplo”1\_688" siginifa que é o
+        gene número 688 da sequência 1.
+    -   **partial**: indica se o gene está completo ou não. “0” indica
+        que no gene foi encontrado o códon de inicio ou de parada, “01”
+        indica que no gene só foi encontrado o cóndon de inicio, “11”
+        indica que não foram encontrados nenhum dos dois códons e “00”
+        indica que foram encontrados ambos códons.
+    -   **start\_type**: sequência do códon de inicio.
+    -   **stop\_type**: sequências do códon de parada
+    -   **rbs\_motif**: *RBS motif* encontrado pelo Prodigal
+    -   **rbs\_spacer**: número de bases entre o códon de inicio e o
+        *motif* observado.
+    -   **gc\_cont**: Conetúdo de GC no gene
+    -   **conf**: nota de confiança pra o gene, representa a
+        probabilidade que esse gene seja real.
+    -   **score**: *score* total pro gene
+    -   **cscore**: fração hexamero do *score*, o quanto este gene se
+        parece com uma proteína verdadeira.
+    -   **sscore**: *score* para o sitio de inicio da tradução do gene.
+        é a soma dos três seguintes *scores*.
+    -   **rscore**: *score* pro *RBS motif*
+    -   **uscores**: *score* pra sequência em torno do códon de início.
+    -   **tscore**: *score* para o tipo de códon de inicio
+    -   **mscore**: *score* pros sinais restantes (tipo de códon de
+        parada e informações da fita principal / reversa).
+
+Uma vez terminado o processo, pode explorar os diferentes arquivos de
+saída para conhecer a fondo a estrutura de cada um deles e as
+informações que cada um tem.
+
 ------------------------------------------------------------------------
 
 ## Em construção…
