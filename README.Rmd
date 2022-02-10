@@ -837,9 +837,9 @@ Ahora vamos a mapear las reads de las muestras individuales en el co-assembly. E
 **Cuidado:** Esté atento al nombre de sus muestras, y si es necesario modifique el comando, para que se ajuste a sus muestras.
 
 ```
-for i in 02.CleanData/*1_paired.fq.gz
+for i in 02.CleanData/*_1_paired.fq.gz
 do
-BASE=$(basename $i 1_paired.fq.gz)
+BASE=$(basename $i _1_paired.fq.gz)
 bowtie2 -q -1 $i -2 02.CleanData/${BASE}2_paired.fq.gz -x 07.Mapping/final_assembly_DB -p 10 -S 07.Mapping/${BASE}.sam
 done
 ```
@@ -1675,9 +1675,101 @@ df %>%
   row_spec(0, background = "rgb(172, 178, 152)", color = "black", font_size = 15)
 ```
 
+## 10. Abundância relativa dos MAGs nas amostras
+
+Usando o programa [**CoverM**](https://github.com/wwood/CoverM) é possível calcular a abundância relativa de cada MAG em cada uma das amostras. Para isto é necessário usar os arquivos `.sorted.bam` para mapear os genomas dentros das reads das amostras.
+
+### 10.1. Instalação
+
+Crie um novo ambiente para esta ferramenta, chamado **coverm**
+
+```
+# Crie o ambiente
+conda create -n coverm
+
+# Ative o ambiente
+conda activate coverm
+
+# Instale Coverm
+conda install -c bioconda coverm
+```
+
+### 10.2 Uso
+
+**CorverM** usará a informação do mapeamento, para calcular a porcentagem relativa de cada MAG em cada uma das amostras que os originaram. 
+
+```
+mkdir 17.Coverage
+
+coverm genome --bam-files 06.Mapping/Sample1.sorted.bam 06.Mapping/Sample2.sorted.bam 06.Mapping/Sample3.sorted.bam 06.Mapping/Sample4.sorted.bam 06.Mapping/Sample5.sorted.bam 06.Mapping/Sample6.sorted.bam -d 13.MAGs/HQ_MQ_MAGs -x fa --min-read-percent-identity 0.95 --methods relative_abundance --output-file 17.Coverage/output_coverm.tsv
+```
+**SINTAXE**
+
+```
+coverm mode <mapping_input> -d genomes_directory/ -x extension <.fa .fna .fasta> --min-read-percent-identity x.xx --methods method --output-file output.tsv -t 6
+```
+
+* `mode`: `genome` ou `contig.` Tipo de dados nos que o programa vai calcular a cobertura
+
+* `mapping_input`: 
+  * `-1` (arquivos forward fasta/q para mapeamento), `-2` (arquivos reverse fasta/q para mapeamento)
+  * `-c` um o mais pares de forward e reverse fasta/q para mapeamento em ordem
+  * `--single` fasta/q no pareados (single-end)
+  * `--bam-files` archivos bam ordenados (sorted)
+* `-d` diretório com os genomas
+* `-x` extensão dos arquivos dos genomas
+* `--min-read-percent-identity` Exclui sequências com porcetagem de identidade menor ao inserido.
+* `--methods` Método para calcular a cobertura (i.e `relative_abundance`, `mean`, `trimmed_mean`, `coverage_histogram`, `covered_bases`, `varieance`, etc)
+* `--output-file` tabela com resultados. 
+* `-t` número de threads
+
+**Nota:** Este programa tem **MUITOS** parâmetros para customizar, por favor para mais informação visite a documentação pro modo [`genome`](wwood.github.io/CoverM/coverm-genome.html) ou pro modo [`contig`](wwood.github.io/CoverM/coverm-contig.html).
+
+Agora adicione a nova informação de abundância relativa de cada MAG na tabela com a qualidade e a taxonomia
+
+```{r}
+## Lendo a tabela de cobertura
+
+cov <- read.delim("output_coverm.tsv") %>% 
+  rename(Sample1 = Sample1_.sorted.Relative.Abundance....,
+         Sample2 = Sample2_.sorted.Relative.Abundance....,
+         Sample3 = Sample3_.sorted.Relative.Abundance....,
+         Sample4 = Sample4_.sorted.Relative.Abundance....,
+         Sample5 = Sample5_.sorted.Relative.Abundance....,
+         Sample6 = Sample6_.sorted.Relative.Abundance....
+         ) %>% 
+  filter(Genome != "unmapped") %>% 
+  mutate_if(is.numeric, round, digits = 2)
 
 
-## 10. Anotação Funcional
+## Unindo com a tabela de taxonomia e qualidade
+
+final.table <- merge(taxa2, cov, by = "Genome")
+```
+
+
+```{r, echo=FALSE, message=FALSE}
+
+library(dplyr)
+library(kableExtra)
+
+df<- final.table
+color.me <- which(df$Quality == "HighQuality")
+
+color.me1 <- which(df$Quality == "MediumQuality")
+
+df %>% 
+  kable(escape = F, full_width = FALSE) %>%
+  kable_styling() %>%
+  row_spec(color.me, bold = T, color = "white", background = "green") %>% 
+  kable_styling() %>%
+  row_spec(color.me1, bold = T, color = "white", background = "orange") %>% 
+  row_spec(0, background = "rgb(172, 178, 152)", color = "black", font_size = 15)
+```
+
+As colunas com *NaN* significa que nenhuma read dessas amostras foram mapeadas. Isso pode ser porque o dataset de exemplo são pequenos subsamples de outras amostras. Nenhum MAG foi gerado a partir dessas duas amostras (Sample4 e Sample6).
+
+## 11. Anotação Funcional
 
 Além da anotação taxonômica pode ser feita uma anotação funcional para conhecer o potencial metabólico de cada um dos MAGs obtidos. Esta fase está divida em dois grandes processos: i) predição dos genes, ii) alinhamento dos genes preditos contra adiferentes bases de dados. 
 
@@ -1791,18 +1883,6 @@ Después do *header* se encuentra una tabla con las informaciones de los genes e
   
 
 Uma vez terminado o processo, pode explorar os diferentes arquivos de saída para conhecer a fondo a estrutura de cada um deles e as informações que cada um tem.
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

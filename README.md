@@ -1202,9 +1202,9 @@ muestras al mismo tiempo. **Cuidado:** Esté atento al nombre de sus
 muestras, y si es necesario modifique el comando, para que se ajuste a
 sus muestras.
 
-    for i in 02.CleanData/*1_paired.fq.gz
+    for i in 02.CleanData/*_1_paired.fq.gz
     do
-    BASE=$(basename $i 1_paired.fq.gz)
+    BASE=$(basename $i _1_paired.fq.gz)
     bowtie2 -q -1 $i -2 02.CleanData/${BASE}2_paired.fq.gz -x 07.Mapping/final_assembly_DB -p 10 -S 07.Mapping/${BASE}.sam
     done
 
@@ -2514,7 +2514,631 @@ MediumQuality
 </tbody>
 </table>
 
-## 10. Anotação Funcional
+## 10. Abundância relativa dos MAGs nas amostras
+
+Usando o programa [**CoverM**](https://github.com/wwood/CoverM) é
+possível calcular a abundância relativa de cada MAG em cada uma das
+amostras. Para isto é necessário usar os arquivos `.sorted.bam` para
+mapear os genomas dentros das reads das amostras.
+
+### 10.1. Instalação
+
+Crie um novo ambiente para esta ferramenta, chamado **coverm**
+
+    # Crie o ambiente
+    conda create -n coverm
+
+    # Ative o ambiente
+    conda activate coverm
+
+    # Instale Coverm
+    conda install -c bioconda coverm
+
+### 10.2 Uso
+
+**CorverM** usará a informação do mapeamento, para calcular a
+porcentagem relativa de cada MAG em cada uma das amostras que os
+originaram.
+
+    mkdir 17.Coverage
+
+    coverm genome --bam-files 06.Mapping/Sample1.sorted.bam 06.Mapping/Sample2.sorted.bam 06.Mapping/Sample3.sorted.bam 06.Mapping/Sample4.sorted.bam 06.Mapping/Sample5.sorted.bam 06.Mapping/Sample6.sorted.bam -d 13.MAGs/HQ_MQ_MAGs -x fa --min-read-percent-identity 0.95 --methods relative_abundance --output-file 17.Coverage/output_coverm.tsv
+
+**SINTAXE**
+
+    coverm mode <mapping_input> -d genomes_directory/ -x extension <.fa .fna .fasta> --min-read-percent-identity x.xx --methods method --output-file output.tsv -t 6
+
+-   `mode`: `genome` ou `contig.` Tipo de dados nos que o programa vai
+    calcular a cobertura
+
+-   `mapping_input`:
+
+    -   `-1` (arquivos forward fasta/q para mapeamento), `-2` (arquivos
+        reverse fasta/q para mapeamento)
+    -   `-c` um o mais pares de forward e reverse fasta/q para
+        mapeamento em ordem
+    -   `--single` fasta/q no pareados (single-end)
+    -   `--bam-files` archivos bam ordenados (sorted)
+
+-   `-d` diretório com os genomas
+
+-   `-x` extensão dos arquivos dos genomas
+
+-   `--min-read-percent-identity` Exclui sequências com porcetagem de
+    identidade menor ao inserido.
+
+-   `--methods` Método para calcular a cobertura (i.e
+    `relative_abundance`, `mean`, `trimmed_mean`, `coverage_histogram`,
+    `covered_bases`, `varieance`, etc)
+
+-   `--output-file` tabela com resultados.
+
+-   `-t` número de threads
+
+**Nota:** Este programa tem **MUITOS** parâmetros para customizar, por
+favor para mais informação visite a documentação pro modo
+[`genome`](wwood.github.io/CoverM/coverm-genome.html) ou pro modo
+[`contig`](wwood.github.io/CoverM/coverm-contig.html).
+
+Agora adicione a nova informação de abundância relativa de cada MAG na
+tabela com a qualidade e a taxonomia
+
+``` r
+## Lendo a tabela de cobertura
+
+cov <- read.delim("output_coverm.tsv") %>% 
+  rename(Sample1 = Sample1_.sorted.Relative.Abundance....,
+         Sample2 = Sample2_.sorted.Relative.Abundance....,
+         Sample3 = Sample3_.sorted.Relative.Abundance....,
+         Sample4 = Sample4_.sorted.Relative.Abundance....,
+         Sample5 = Sample5_.sorted.Relative.Abundance....,
+         Sample6 = Sample6_.sorted.Relative.Abundance....
+         ) %>% 
+  filter(Genome != "unmapped") %>% 
+  mutate_if(is.numeric, round, digits = 2)
+
+
+## Unindo com a tabela de taxonomia e qualidade
+
+final.table <- merge(taxa2, cov, by = "Genome")
+```
+
+<table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Genome
+</th>
+<th style="text-align:right;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Completeness
+</th>
+<th style="text-align:right;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Contamination
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Domain
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Phyla
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Class
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Order
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Family
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Genus
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Species
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+classification\_method
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+note
+</th>
+<th style="text-align:left;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Quality
+</th>
+<th style="text-align:right;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Sample1
+</th>
+<th style="text-align:right;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Sample2
+</th>
+<th style="text-align:right;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Sample3
+</th>
+<th style="text-align:right;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Sample4
+</th>
+<th style="text-align:right;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Sample5
+</th>
+<th style="text-align:right;color: black !important;background-color: rgb(172, 178, 152) !important;font-size: 15px;">
+Sample6
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG10
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+62.50
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.38
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Desulfobacterota\_F
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Desulfuromonadia
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Geobacterales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Geobacteraceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Geobacter\_D
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+taxonomic classification defined by topology and ANI
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+N/A
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MediumQuality
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+13.86
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+NaN
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+NaN
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG11
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+51.04
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+1.39
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteroidota
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Kapabacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Kapabacteriales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA2268
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+taxonomic classification fully defined by topology
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+N/A
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MediumQuality
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+6.48
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+NaN
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+NaN
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+MAG12
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+94.30
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+0.00
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Bacteroidota
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Ignavibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+SJA-28
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+B-1AR
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Ch128a
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+taxonomic classification defined by topology and ANI
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+N/A
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+HighQuality
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+0.99
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+9.45
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+NaN
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+NaN
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG2
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+100.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+8.33
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteroidota
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Ignavibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Ignavibacteriales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Melioribacteraceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+XYB12-FULL-38-5
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+taxonomic novelty determined using RED
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+N/A
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MediumQuality
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+76.66
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+18.85
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+9.60
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+NaN
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+NaN
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG3
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+74.10
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+1.14
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteroidota
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteroidia
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteroidales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+BBW3
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA8529
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+ANI
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+N/A
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MediumQuality
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+8.42
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+NaN
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+NaN
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG6
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+52.08
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.00
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Patescibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Paceibacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA9983\_A
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA9973
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA9973
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+taxonomic classification defined by topology and ANI
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+N/A
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MediumQuality
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+6.70
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+NaN
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+NaN
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG7
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+75.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+9.90
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Archaea
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Thermoproteota
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Nitrososphaeria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Nitrososphaerales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Nitrosopumilaceae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Nitrosotenuis
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Nitrosotenuis cloacae
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+taxonomic classification defined by topology and ANI
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+topological placement and ANI have congruent species assignments
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MediumQuality
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+NaN
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+4.56
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+NaN
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MAG8
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+83.91
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+8.71
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Bacteria
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Firmicutes\_B
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Thermincolia
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Thermincolales
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+UBA2595
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+GW-Firmicutes-8
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+taxonomic classification defined by topology and ANI
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+N/A
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+MediumQuality
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+2.73
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+14.69
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+NaN
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+NaN
+</td>
+</tr>
+</tbody>
+</table>
+
+As colunas com *NaN* significa que nenhuma read dessas amostras foram
+mapeadas. Isso pode ser porque o dataset de exemplo são pequenos
+subsamples de outras amostras. Nenhum MAG foi gerado a partir dessas
+duas amostras (Sample4 e Sample6).
+
+## 11. Anotação Funcional
 
 Além da anotação taxonômica pode ser feita uma anotação funcional para
 conhecer o potencial metabólico de cada um dos MAGs obtidos. Esta fase
