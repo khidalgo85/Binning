@@ -2586,9 +2586,9 @@ Crie um novo ambiente para esta ferramenta, chamado **coverm**
 porcentagem relativa de cada MAG em cada uma das amostras que os
 originaram.
 
-    mkdir 17.Coverage
+    mkdir 16.Coverage
 
-    coverm genome --bam-files 06.Mapping/Sample1.sorted.bam 06.Mapping/Sample2.sorted.bam 06.Mapping/Sample3.sorted.bam 06.Mapping/Sample4.sorted.bam 06.Mapping/Sample5.sorted.bam 06.Mapping/Sample6.sorted.bam -d 13.MAGs/HQ_MQ_MAGs -x fa --min-read-percent-identity 0.95 --methods relative_abundance --output-file 17.Coverage/output_coverm.tsv
+    coverm genome --bam-files 06.Mapping/Sample1.sorted.bam 06.Mapping/Sample2.sorted.bam 06.Mapping/Sample3.sorted.bam 06.Mapping/Sample4.sorted.bam 06.Mapping/Sample5.sorted.bam 06.Mapping/Sample6.sorted.bam -d 13.MAGs/HQ_MQ_MAGs -x fa --min-read-percent-identity 0.95 --methods relative_abundance --output-file 16.Coverage/output_coverm.tsv
 
 **SINTAXE**
 
@@ -3229,7 +3229,7 @@ conhecer o potencial metabólico de cada um dos MAGs obtidos. Esta fase
 está divida em dois grandes processos: i) predição dos genes, ii)
 alinhamento dos genes preditos contra adiferentes bases de dados.
 
-### 10.1 Predição de genes
+### 11.1. Predição de genes
 
 O objetivo desta etapa é procurar os mascos abertos de leitura ou ORF
 (*Open Reading Frames*) dentro dos MAGs. Ou seja, predizer onde inicam e
@@ -3249,7 +3249,7 @@ O programa a usar para a predição das ORFs em procarioros é [Prodigal
 (*Prokaryotic Dynamic Programming Gene Fiding
 Algorithm*)](https://github.com/hyattpd/Prodigal).
 
-#### 10.1.1 Instalação
+#### 11.1.1 Instalação
 
 Crie um novo ambiente para instalação das ferramentas relacionadas com à
 anotação de genes, chamado **Annotation**
@@ -3263,16 +3263,16 @@ anotação de genes, chamado **Annotation**
     # Instale Prodigal
     conda install -c bioconda prodigal
 
-#### 10.1.2. Uso
+#### 11.1.2. Uso
 
-Crie uma pasta chamada `16.GenePrediction` para colocar a saída do
+Crie uma pasta chamada `17.GenePrediction` para colocar a saída do
 **Prodigal**.
 
-`mkdir 16.GenePrediction`
+`mkdir 17.GenePrediction`
 
 A continuação encontrara o comando **individual** (Um MAG por vez)
 
-    prodigal -i 13.MAGS/HQ_MQ_MAGs/MAG1.fa -f gff -o 16.GenePrediction/MAG1.gff -a 16.GenePrediction/MAG1.faa -d 16.GenePrediction/MAG1.fa -p single
+    prodigal -i 13.MAGS/HQ_MQ_MAGs/MAG1.fa -f gff -o 17.GenePrediction/MAG1.gff -a 17.GenePrediction/MAG1.faa -d 17.GenePrediction/MAG1.fa -p single
 
 Se quiser pode rodar a análises para vários MAGs ao mesmo tempo, usando
 o seguinte loop:
@@ -3280,7 +3280,7 @@ o seguinte loop:
     for i in 13.MAGS/HQ_MQ_MAGs/*.fa
     do
     BASE=$(basename $i .fa)
-    prodigal -i $i -f gff -o 16.GenePrediction/${BASE}.gff -a 16.GenePrediction/${BASE}.faa -d 16.GenePrediction/${BASE}.fa -p single
+    prodigal -i $i -f gff -o 17.GenePrediction/${BASE}.gff -a 17.GenePrediction/${BASE}.faa -d 17.GenePrediction/${BASE}.fa -p single
     done
 
 **SINTAXE**
@@ -3389,6 +3389,189 @@ genes encontrados:
 Uma vez terminado o processo, pode explorar os diferentes arquivos de
 saída para conhecer a fondo a estrutura de cada um deles e as
 informações que cada um tem.
+
+### 11.2. Anotação Funcional
+
+A anotação dos genes é feita alinhando as ORFs preditas contra bases de
+dados. No caso da anotação funcional, será usado o alinhador
+[**Diamond**](https://github.com/bbuchfink/diamond) e as bases de dados
+serão [**EggNOG**](http://eggnog5.embl.de/#/app/home) e
+[**KEGG**](https://www.kegg.jp/kegg/).
+
+> 🇪🇸La anotación de los genes es realizada alineando las ORFs predichas
+> contra bases de dados. En el caso de la anotación funcional será usado
+> el programa para alineamiento
+> [**Diamond**](https://github.com/bbuchfink/diamond) y las bases de
+> datos [**EggNOG**](http://eggnog5.embl.de/#/app/home) y
+> [**KEGG**](https://www.kegg.jp/kegg/).
+
+#### 11.2.1 Instalação
+
+##### 11.2.1.1 Obtenção das Bases de Dados
+
+Para a obtenção das bases de dados, pode ir nos sites e descarregar
+diretamente. No entanto, tenha em conta que a base de dados **KEGG** é
+paga. Se você descarregar direto da fonte, deverá formatar as DBs para o
+seu uso com Diamond (anotação funcional). Isto é feito com o comando
+`makedb --in reference.fasta -d reference`.
+
+Para facilitar, no seguinte link, você encontrará as bases de dados
+**KEGG**, **EggNOG**, previamente formatadas para o uso em Diamond.
+
+Use o programa `gdown` para descarregar as dbs que se encontram em um
+GoogleDrive. Se não tiver o `gdown` instalado, siga o seguintes passos:
+
+> 🇪🇸 Para la obtención de las bases de datos, puede ir directamente en
+> las páginas web de cada una. Sin embargo, tenga en cuenta que la base
+> de datos **KEGG** es paga. Si ud decide descargar directamente de la
+> fuente, deberá hacer una formatación de las DBs para el uso con
+> Diamond (anotación funcional). Este processo es realizado usando el
+> comando `makedb --in reference.fasta -d reference`.
+>
+> Para facilitar, en el siguiente link, encontrará las bases de
+> datos**KEGG**, **EggNOG**, previamente formatadas para su uso en
+> Diamond e **Kraken2**.
+
+-   [**Dbs**](https://drive.google.com/drive/folders/1GLP6vA4Gs0cce-nnBXCmZSgmONWybOSF?usp=sharing)
+
+<!-- -->
+
+    ## Se não tiver instalado pip
+    sudo apt update
+    sudo apt install python3-pip
+    pip3 --verision
+
+    ## Instale gdown
+    pip install gdown
+
+🇧🇷 Crie uma pasta, chamada `dbs/`, e use o programa `gdown` para
+descarregar as dbs.
+
+    # Crie o diretório
+    mkdir dbs/
+
+    # Descarregue as DBs
+
+    ## KEGG
+    gdown --id 1ZxjJdwh1izP32X5CH-B8SN0DK2WAAAvr
+
+    ##EggNOG
+    gdown --id 1x2Kp4PTX8GFFhkJm6EVDQLfi-xRSQ735
+
+Serão descarregados os seguintes arquivos:
+
+-   `eggnog.dmnd`: Base de dados EggNOG formatada para Diammond
+-   `keggdb.dmnd`: Base de dados KEGG formatada para Diammond
+
+#### 11.2.1.2 Instalação Diammond
+
+O [**Diamond**](https://github.com/bbuchfink/diamond) será usado para a
+anotação funcional. Instale através do conda, no ambiente `Annotation`
+
+    # Active o ambiente
+    conda activate Annotation
+
+    # Instalaçao
+    conda install -c bioconda diamond=2.0.9
+
+### 11.2.2 Uso
+
+🇧🇷 Uma vez instaladas todas as ferramentas e descarregadas as bases de
+dados, pode proceder à anotação. Neste caso será feita primeiro à
+funcional, usando Diammond e as bases de dados **KEGG** e **EggNOG**. A
+continuação se encontra o comando ndividual (*uma montagem e uma base de
+dados por vez*)
+
+> 🇪🇸 Una vez instaladas todas las herramientas y descargadas las bases
+> de datos, puede proceder a la anotación. En este caso será hecha
+> primero la anotación funcional, usando Diammond e las bases de datos
+> **KEGG** e **EggNOG**
+
+    ## Crie uma pasta pra saída
+    mkdir 18.FunctionalAnnotation
+
+    ## Diammond
+    diamond blastx --more-sensitive --threads 6 -k 1 -f 6 qseqid qlen sseqid sallseqid slen qstart qend sstart send evalue bitscore score length pident qcovhsp --id 60 --query-cover 60 -d dbs/keggdb.dmnd --query 17.GenePrediction/GenesNucl.fa -o 18.FunctionalAnnotation/GenesNucl_kegg.txt --tmpdir /dev/shm
+
+**SINTAXE**
+
+    diamond blastx --more-sensitive --threads -k -f --id --query-cover -d dbs/db.dmnd --query orfs_nucleotides.fa -o annotation.txt --tmpdir /dev/shm
+
+-   `blastx`: Alinha sequências de DNA contra uma base de dados de
+    proteínas
+-   `--more-sensitive`: este modo permite hits com &gt;40% de
+    identidade. Existem outros modos
+    `--fast --min-sensitive --very-sensitive --ultra-sensitive`. Clique
+    [aqui](https://github.com/bbuchfink/diamond/wiki/3.-Command-line-options)
+    para mais detalhes
+-   `--threads`: número de núcleos
+-   `-k/--max-target-seqs`: Número máximo de sequências *target* por
+    *query* para reportar alinheamentos.
+-   `-f/--outfmt`: Formato de saída. São aceptos os seguintes valores:
+    -   `0` Formato BLAST *pairwise*
+    -   `5` fomato BLAST XML
+    -   `6` Formato do BLAST tabular (default), pode customizar as
+        colunas com uma lista separada por espaços, das seguintes
+        opções:
+        -   `qseqid` id da sequência *query*
+        -   `qlen` tamanho da sequência *query*
+        -   `sseqid` id da sequência da base de dados
+        -   `sallseqid` todas os id das sequências das bases de dados
+        -   `slen` tamanho da sequência da base de dados
+        -   `qstart` inicio do alinhamento no *query*
+        -   `qend` fim do alinhamento no *query*
+        -   `sstart` inicio do alinhamento na sequência da base de dados
+        -   `send` fim do alinhamento na sequência da base de dados
+        -   `evalue`
+        -   `bitscore`
+        -   `score`
+        -   `length` tamanho do alinhamento
+        -   `pident` porcentagem de matches identicos
+
+Com o comando anterior foi feita a anotação do co-assembly de todas as
+amostras `scaffolds.fasta` com a base de dados `kegg.dmnd` e os dados
+foram guardados no arquivo `kegg_annotation.txt`.
+
+> 🇪🇸 Con el comando anterior fue realizada la anotación del co-assembly
+> de todas las muestras `scaffolds.fasta` con la base de datos
+> `kegg.dmnd` y los datos fueron guardadas en el archivo
+> `GenesNucl_kegg.txt`.
+
+Se tiver mais de uma montagem e quiser rodar todas e as duas bases de
+dados ao mesmo tempo, pode usar o seguinte loop `for`:
+
+> 🇪🇸 Si tiene más de un ensamble y quiere correr todos e las dos bases
+> de datos al mismo tiempo, puede usar el siguiente loop `for`:
+
+    for i in 17.GenePrediction/*.fa
+    do
+    BASE=$(basename $i .fa)
+      for j in dbs/*.dmnd
+      do
+      db=$(basename $j .dmnd)
+    diamond blastx --more-sensitive --threads 6 -k 1 -f 6 qseqid qlen sseqid sallseqid slen qstart qend sstart send evalue bitscore score length pident qcovhsp --id 60 --query-cover 60 -d $j --query $i -o 18.FunctionalAnnotation/${BASE}_${db}.txt --tmpdir /dev/shm
+    done
+    done
+
+Com o comando anterior, é feita a anotação em todas as ORFs preditas na
+pasta `17.GenePrediction/` com todas as bases de dados para diammond
+dentro da pasta `dbs/`. Veja que no loop foram declaradas duas
+variavéis, `i` que corresponde a cada um dos arquivos das ORFs
+(nucleotídeos) preditas com Prodigal e a variável `j` que corresponde a
+cada um dos arquivos terminados em `.dmnd` dentro da pasta `dbs/`, ou
+seja as bases de dados `kegg.dmnd` e `eggnog.dmnd`. Os arquivos de saída
+são duas tabelas por cada montagem, uma da anotação com *eggnog* e outra
+com *kegg*.
+
+> 🇪🇸 Con el comado anterior, es realizada la anotación de todas las ORF
+> predichas en el directorio `17.GenePrediction/` con todas las bases de
+> datos para Diammond dentro de la carpeta `dbs/`. Vea que en el loop
+> fueron declaradas dos variables, `i` que corresponde a cada uno de los
+> archivos de las ORFs (nucleótidos) predichos con Prodigal e la
+> variable `j` que corresponde a cada uno de los archivos terminados en
+> `.dmnd` dentro de la carpeta `dbs/`, o sea las bases de datos
+> `kegg.dmnd` y `eggnog.dmnd`. Los archivos de salida son dos tablas por
+> cada ensamble, una con la anotación con *eggnog* e otra con *kegg*.
 
 ------------------------------------------------------------------------
 
