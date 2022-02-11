@@ -2047,6 +2047,14 @@ dominio. Assím, os arquivos com os resultados finais são
 `gtdbtk_bac120.summary.tsv` e `gtdbtk_ar122.summary.tsv`. Estes arquivos
 são tabelas com as seguintes colunas:
 
+> 🇪🇸 Depois del proceso de **GTDB-Tk** serán generados una serie de
+> archivos y directorios con resultados de cada fase del proceso. Esta
+> herramienta separa los resultados de los MAGs que fueron anotados como
+> bacterias y arqueas. Este es debido a que usa dos bases de datos
+> separadas para cada dominio. Así, los archivos con los resultados
+> finales son: `gtdbtk_bac120.summary.tsv` y `gtdbtk_ar122.summary.tsv`.
+> Estos archivos son tablas con las siguientes columnas:
+
 -   user\_genome: Nome do MAG
 -   Classification: Taxonomia inferida por GTDB-Tk.
 -   fastani\_reference: Indica o número de acesso do genoma de
@@ -2565,7 +2573,12 @@ MediumQuality
 Usando o programa [**CoverM**](https://github.com/wwood/CoverM) é
 possível calcular a abundância relativa de cada MAG em cada uma das
 amostras. Para isto é necessário usar os arquivos `.sorted.bam` para
-mapear os genomas dentros das reads das amostras.
+mapear os genomas dentro das reads das amostras.
+
+> 🇪🇸 Usando el programa [**CoverM**](https://github.com/wwood/CoverM) es
+> posible calcular la abundancia relativa de cada MAG en cada una de las
+> muestras. Para esto es necesario usar los archivos `.sorted.bam` para
+> mapear los genomas dentro de los reads de las muestras
 
 ### 10.1. Instalação
 
@@ -3220,16 +3233,27 @@ NaN
 </table>
 
 As colunas com *NaN* significa que nenhuma read dessas amostras foram
-mapeadas. Isso pode ser porque o dataset de exemplo são pequenos
-subsamples de outras amostras. Nenhum MAG foi gerado a partir dessas
-duas amostras (Sample4 e Sample6).
+mapeadas. Isso pode ser porque as amostras do dataset de exemplo são
+pequenas subsamples. Nenhum MAG foi gerado a partir dessas duas amostras
+(Sample4 e Sample6).
+
+> 🇪🇸 Las columnas con *NaN* significa que ningún read de esas muestras
+> fueron mapeadas. Esto puede ser porque las muestras del dataset de
+> ejemplo son pequeños subsampels. Ningún MAG fue generado a partir de
+> esas dos muestras (Sample4 y Sample6).
 
 ## 11. Anotação Funcional
 
 Além da anotação taxonômica pode ser feita uma anotação funcional para
 conhecer o potencial metabólico de cada um dos MAGs obtidos. Esta fase
 está divida em dois grandes processos: i) predição dos genes, ii)
-alinhamento dos genes preditos contra adiferentes bases de dados.
+alinhamento dos genes preditos contra as diferentes bases de dados.
+
+> 🇪🇸 Además de la anotación taxonómica puede ser hecha una anotación
+> funcional para conocer el potencial metabólico de cada uno de los MAGs
+> obtenidos. Esta fase está dividida en dos grandes procesos: i)
+> predicción de genes, ii) alineamiento de los genes predichos contra
+> las diferentes bases de datos.
 
 ### 11.1. Predição de genes
 
@@ -3407,7 +3431,7 @@ serão [**EggNOG**](http://eggnog5.embl.de/#/app/home) e
 > datos [**EggNOG**](http://eggnog5.embl.de/#/app/home) y
 > [**KEGG**](https://www.kegg.jp/kegg/).
 
-#### 11.2.1 Instalação
+#### 11.2.1 Diamond
 
 ##### 11.2.1.1 Obtenção das Bases de Dados
 
@@ -3574,6 +3598,80 @@ com *kegg*.
 > `.dmnd` dentro de la carpeta `dbs/`, o sea las bases de datos
 > `kegg.dmnd` y `eggnog.dmnd`. Los archivos de salida son dos tablas por
 > cada ensamble, una con la anotación con *eggnog* e otra con *kegg*.
+
+### 11.3 Prokka
+
+[**Prokka**](https://github.com/tseemann/prokka) é uma ferramente
+amplamente usada para anotação funcional em genomas.
+
+#### 11.3.1. Instalação
+
+Siga os seguintes comandos para a instalação de **Prokka**:
+
+    # Crie um ambiente e instale prokka
+    conda create -y -n prokka prokka==1.14.6
+
+    # Ative o ambiente
+    conda activate prokka
+
+    # Instale alguma dependencias adicionais
+    conda install -y perl-app-cpanminus
+    cpanm Bio::SearchIO::hmmer --force
+
+#### 11.3.2 Uso
+
+**Prokka** tem diferentes nìveis de comandos segundo a expertise do
+usuário (iniciante, moderado, especialista, experto, mago, etc). Para
+este tutorial usaremos o nível moderado.
+
+O comando para anotar genoma por genoma é:
+
+> 🇪🇸 **Prokka** tiene diferentes níveles de comando según la experticia
+> del usuario (iniciante, moderado, especialista, experto, mago, etc).
+> Para este tutorial usaremos el nível moderado.
+>
+> El comando para anotar genoma por genoma
+
+    prokka --outdir 19.Prokka -prefix MAG10 13.MAGS/HQ_MQ_MAGs/MAG10.fa --cpus 6
+
+Ou em loop para automatizar a anotação de todos seus genomas:
+
+    for i in 13.MAGS/HQ_MQ_MAGs/*.fa
+    do
+    BASE=$(basename $i .fa)
+    prokka --outdir 19.Prokka --prefix ${BASE} $i --cpus 6 --force
+    done
+
+**SINTAXE**
+
+    prokka --outdir output/ --prefix prefix genome.fa --cpus xx --force
+
+-   `--outdir`: Diretório de saída
+-   `--prefix`: prefijo para os outputs
+-   `genome.fa`: caminho para o genoma em formato fasta
+-   `--cpus`: número de núcleos/threads
+-   `--force`: forçar o programa a sobre escrever se a pasta já estiver
+    criada.
+
+**Outputs**
+
+-   `.gff`: anotações em formato GFF3, com as sequências e as anotações,
+    pode ser visualizado no programa Artemis.
+-   `.gbk`: arquivo Genbank derivado do `.gff`. Se o input foi um
+    arquivo multifasta, este será um arquivo multi-Genbank
+-   `.fna`: sequências input em nucleotídeos
+-   `.fna`: arquivo de poteínas com a translação dos CDS
+-   `.ffn`: arquivo fasta com todas os transcritos preditos (CDS, rRNA,
+    tRNA, tmRNA, misc\_RNA)
+-   `.sqn`: anotações formato Sequin
+-   `.txt`: Estatísticas relacionadas com as *features* anotadas
+-   `.tsv`: tabela com todas as *features* anotadas (locus\_tag, ftype,
+    len\_bp, gene, EC\_number, COG, product)
+
+**Nota:** Para mais informações visite o
+[GitHub](https://github.com/tseemann/prokka).
+
+#### 11.3.2 Manipulação de Dados
 
 ------------------------------------------------------------------------
 
