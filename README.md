@@ -2663,7 +2663,7 @@ mypalette <- c("#a65538","#7282e2","#6fbe48","#ad5ed3","#bbb237",
 
 
 ### Phylum
-df %>% 
+p <- df %>% 
   ggplot(aes(y=Sample, x=RelativeAbundance, fill=Family)) + 
   geom_bar(stat='identity') + scale_fill_manual(values=c(mypalette)) +
   scale_y_discrete(labels=c("Sample1", "Sample2", "Sample3", "Sample4", 
@@ -2674,6 +2674,8 @@ theme(legend.position = "bottom") +
   theme(axis.text.x = element_text(size = 14)) +
   theme(axis.text.y = element_text(size = 14)) +
   theme(legend.text = element_text(size = 12))
+
+p
 #> Warning: Removed 16 rows containing missing values (position_stack).
 ```
 
