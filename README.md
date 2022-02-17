@@ -2089,8 +2089,10 @@ são tabelas com as seguintes colunas:
 
 **TABELA**
 
-Usando R, contrua uma tabela única com as informações das taxonomias e
-da qualidade dos MAGs:
+Usando um [Script de
+R](https://github.com/khidalgo85/Binning/blob/master/taxonomy.R),
+contrua uma tabela única com as informações das taxonomias e da
+qualidade dos MAGs:
 
 ``` r
 ## Construindo tabela com taxonomia e qualidade dos mags
@@ -2640,7 +2642,8 @@ favor para mais informação visite a documentação pro modo
 [`contig`](wwood.github.io/CoverM/coverm-contig.html).
 
 Agora adicione a nova informação de abundância relativa de cada MAG na
-tabela com a qualidade e a taxonomia e gráfique
+tabela com a qualidade e a taxonomia e gráfique. (Encontre o Script do R
+[aqui](https://github.com/khidalgo85/Binning/blob/master/coverage.R))
 
 ``` r
 library(tidyr)
@@ -3672,6 +3675,103 @@ Ou em loop para automatizar a anotação de todos seus genomas:
 [GitHub](https://github.com/tseemann/prokka).
 
 #### 11.4. Manipulação de Dados
+
+Após a anotação funcional com Diamond (Kegg e EggNOG) e com Prokka, você
+terá três tabelas por MAG com cada base de dados. Para facilitar a
+ánalise dessas funções é melhor juntar as tabelas numa só, tengo todas
+as anotações de todos os MAGs. Para a unifiação de todas as tabelas é
+necessário uma série de passos de formatação a modo de não perder a
+trazabilidade das anotações.
+
+**Nota:** Em cada etapa verifique o que foi feito nas tabelas usando o
+comando `head` e/ou `tail`.
+
+**1. Separando a terceira coluna**
+
+A terceira coluna das tabelas geradas pelo Diamond, traz o código de
+acesso do NCBI e separado por \|, o número KO. Por exemplo: WP00000.0 \|
+K00001. O seguinte comando separa essas informações em duas colunas
+usando um script de *Perl*:
+
+    cd 18.FunctionalAnnotation
+
+
+    for i in *.txt; do BASE=$(basename $i .txt); perl -pe 's/\|?(?:\s+gi|ref)?\|\s*/\t/g' $i > ${BASE}_formated.txt; done
+
+Elimine as tabelas iniciais para não poluir a pasta:
+
+    rm *keggdb.txt
+
+    rm *eggnog.txt
+
+**2. Concantenando as anotações com KEGG e EggNOG**
+
+    for i in *_keggdb_formated.txt; do BASE=$(basename $i _keggdb_formated.txt); cat $i ${BASE}_eggnog_formated.txt > ${BASE}; done
+
+**3. Criando uma coluna com o nome do MAG**
+
+Esta etapa consiste em criar uma coluna em cada tabela com o nome do MAG
+que corresponda. Para isto é usado no comando o nome do arquivo que
+corresponde ao nome do MAG.
+
+    for i in *; do nawk '{print FILENAME"\t"$0}' $i > $i.bk; mv $i.bk $i; done
+
+**4. Concatenando todas as tabelas em uma**
+
+Por último concatene todas as tabelas de anotação dos MAGs em uma só:
+
+    cat * > funcannot.txt
+
+Descarregue [aqui](https://figshare.com/ndownloader/files/33953774) da
+tabela `kegg.tsv` que contém todas os níveis jerárquicos e faça upload
+dela junto com `funcannot.txt` no ambiente R. A continuação encontra um
+[Script do R](https://github.com/khidalgo85/Binning/blob/master/kegg.R)
+para trabalhar com as duas tabelas anteriores.
+
+``` r
+library(dplyr)
+library(stringr)
+library(tidyr)
+
+
+### Lendo a tabela única de anotação funcional
+func <- read.delim("FunctionalAnnotation/funcannot.txt", header = F) %>% 
+  select(V1,V2,V3,V5,V17) 
+
+### Filtrando só as anotações de KEGG
+func.annot.kegg <- func %>% 
+  filter(str_detect(V5, "^K")) %>% # Filtra strings que começem com K (i.e. K00001)
+  # Renomea as colunas
+  rename(Genome = V1, ContigID = V2, length = V3, KO = V5, pident = V17) %>% 
+  # converte para data.frame
+  as.data.frame()
+
+
+# Lê a tabela das informações completas do KEGG
+kegg <- read.delim("FunctionalAnnotation/kegg.tsv", header = F) %>% 
+  rename(KO = V1, Level1 = V2, Level2 = V3, Level3 = V4, GenName = V5)
+
+## Junta as tabelas da anotação do Kegg e as informações dos níveis do KEGG
+func.annot.kegg.final <- left_join(func.annot.kegg %>% 
+                                     group_by(KO) %>% 
+                                     mutate(id = row_number()),
+                                   kegg %>% 
+                                     group_by(KO) %>% 
+                                     mutate(id = row_number()), 
+                                   by = c("KO", "id"))
+
+head(func.annot.kegg.final)
+#> # A tibble: 6 × 10
+#> # Groups:   KO [6]
+#>   Genome ContigID         length KO    pident    id Level1 Level2 Level3 GenName
+#>   <chr>  <chr>             <int> <chr>  <dbl> <int> <chr>  <chr>  <chr>  <chr>  
+#> 1 MAG10  NODE_23_length_…    636 K009…   77.7     1 09100… 09104… 00240… tmk, D…
+#> 2 MAG10  NODE_23_length_…   1656 K018…   88.2     1 09100… 09101… 00630… E5.4.9…
+#> 3 MAG10  NODE_23_length_…    405 K056…   77.6     1 09100… 09101… 00630… MCEE, …
+#> 4 MAG10  NODE_23_length_…   1014 K071…   76.7     1 09190… 09194… 99997… K07139…
+#> 5 MAG10  NODE_23_length_…    645 K007…   70.9     1 09100… 09108… 00730… thiE; …
+#> 6 MAG10  NODE_23_length_…    783 K031…   90.2     1 09100… 09108… 00730… thiG; …
+```
 
 ------------------------------------------------------------------------
 
